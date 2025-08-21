@@ -1,798 +1,701 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { useState, useEffect } from "react"
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 import {
   Search,
   Calendar,
-  Users,
   MapPin,
-  ArrowRight,
-  Sparkles,
-  Shield,
   Clock,
   Star,
-  ChevronRight,
-  Plane,
-  Camera,
-  Play,
-  CheckCircle2,
   Menu,
   X,
-  Globe,
-  Zap,
-  Award,
+  Plane,
   TrendingUp,
-  Heart,
-} from "lucide-react"
+  Users,
+  ArrowRight,
+  Shield,
+  Hotel,
+  Car,
+  ChevronRight,
+  Play,
+  Globe,
+  Award,
+  CheckCircle2,
+} from "lucide-react";
 
-export default function PremiumLandingPage() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+export default function TravelOTALandingPage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("flights");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const destinations = [
     {
-      city: "Istanbul",
-      country: "Turkey",
-      image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80",
-      layoverTime: "8-12 hours",
-      experiences: 42,
-      avgSavings: "$380",
-      highlight: "Hagia Sophia & Grand Bazaar",
+      city: "New York",
+      country: "United States",
+      image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80",
+      price: "from $879",
+      layover: "8h 45m",
+      rating: 4.8,
+      reviews: 1240,
     },
     {
-      city: "Reykjavik",
-      country: "Iceland",
-      image: "https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=800&q=80",
-      layoverTime: "6-10 hours",
-      experiences: 28,
-      avgSavings: "$420",
-      highlight: "Blue Lagoon & Northern Lights",
+      city: "Chicago", 
+      country: "United States",
+      image: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=600&q=80",
+      price: "from $649",
+      layover: "12h 15m", 
+      rating: 4.9,
+      reviews: 890,
     },
     {
-      city: "Singapore",
-      country: "Singapore",
-      image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80",
-      layoverTime: "10-16 hours",
-      experiences: 65,
-      avgSavings: "$510",
-      highlight: "Gardens by the Bay",
+      city: "Dallas",
+      country: "United States", 
+      image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80",
+      price: "from $599",
+      layover: "9h 30m",
+      rating: 4.7,
+      reviews: 650,
     },
     {
-      city: "Dubai",
-      country: "UAE",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-      layoverTime: "12-20 hours",
-      experiences: 78,
-      avgSavings: "$650",
-      highlight: "Burj Khalifa & Desert Safari",
+      city: "Los Angeles",
+      country: "United States",
+      image: "https://images.unsplash.com/photo-1515756500008-6b1a8fb77c8e?w=600&q=80", 
+      price: "from $729",
+      layover: "6h 20m",
+      rating: 4.6,
+      reviews: 1100,
     },
-  ]
-
-  const features = [
-    {
-      icon: Shield,
-      title: "Travel Insurance",
-      description: "Comprehensive coverage for peace of mind",
-    },
-    {
-      icon: Clock,
-      title: "Perfect Timing",
-      description: "AI-optimized layovers that work with your schedule",
-    },
-    {
-      icon: Award,
-      title: "Curated Experiences",
-      description: "Hand-picked activities by local experts",
-    },
-    {
-      icon: TrendingUp,
-      title: "Save More",
-      description: "Average savings of $450 per trip",
-    },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-sm"
-            : "bg-transparent"
-        }`}
-      >
+      {/* Navigation - Travel OTA Style */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-4">
-              <div className="relative">
-                <Image
-                  src="/brand/layoverhq-logo-correct.svg"
-                  alt="LayoverHQ Logo"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12"
-                />
-              </div>
-              <span className="font-display font-semibold text-2xl text-paper-800">
-                LayoverHQ
-              </span>
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/brand/layoverhq-logo-correct.svg"
+                alt="LayoverHQ Logo"
+                width={40}
+                height={40}
+                className="h-10 w-10"
+              />
+              <span className="font-bold text-2xl text-gray-900">LayoverHQ</span>
             </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <Link
-                href="/explore"
-                className="text-paper-600 hover:text-primary-600 font-medium transition-colors duration-300"
-              >
-                Explore
+              <Link href="/flights" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                <Plane className="h-4 w-4 mr-1" />
+                Flights
               </Link>
-              <Link
-                href="/how-it-works"
-                className="text-paper-600 hover:text-primary-600 font-medium transition-colors duration-300"
-              >
-                How it Works
-              </Link>
-              <Link
-                href="/experiences"
-                className="text-paper-600 hover:text-primary-600 font-medium transition-colors duration-300"
-              >
+              <Link href="/experiences" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                <Star className="h-4 w-4 mr-1" />
                 Experiences
               </Link>
-              <Link
-                href="/business"
-                className="text-paper-600 hover:text-primary-600 font-medium transition-colors duration-300"
-              >
+              <Link href="/deals" className="text-gray-700 hover:text-blue-600 font-medium">
+                Deals
+              </Link>
+              <Link href="/business" className="text-gray-700 hover:text-blue-600 font-medium">
                 For Business
               </Link>
             </div>
 
-            {/* Desktop Actions */}
             <div className="hidden lg:flex items-center space-x-4">
-              <button className="text-paper-600 hover:text-primary-600 font-medium transition-colors duration-300">
+              <button className="text-gray-700 hover:text-blue-600 font-medium">
                 Sign In
               </button>
-              <button className="bg-primary-500 text-white px-6 py-2.5 rounded-xl font-medium hover:bg-primary-600 transition-all duration-300 shadow-premium hover:shadow-premium-lg">
-                Get Started
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Register
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-paper-700 hover:text-primary-600 transition-colors"
+              className="lg:hidden p-2 text-gray-700"
             >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-paper-200">
-            <div className="px-4 py-6 space-y-4">
-              <Link href="/explore" className="block text-paper-700 hover:text-primary-600 font-medium py-2 transition-colors">
-                Explore
-              </Link>
-              <Link href="/how-it-works" className="block text-paper-700 hover:text-primary-600 font-medium py-2 transition-colors">
-                How it Works
-              </Link>
-              <Link href="/experiences" className="block text-paper-700 hover:text-primary-600 font-medium py-2 transition-colors">
-                Experiences
-              </Link>
-              <Link href="/business" className="block text-paper-700 hover:text-primary-600 font-medium py-2 transition-colors">
-                For Business
-              </Link>
-              <div className="pt-4 space-y-3">
-                <button className="w-full text-paper-600 hover:text-primary-600 font-medium py-2 transition-colors">Sign In</button>
-                <button className="w-full bg-primary-500 hover:bg-primary-600 text-white py-3 rounded-xl font-medium transition-colors">
-                  Get Started
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </nav>
 
-      {/* Hero Section - Minimalist */}
-      <section className="relative min-h-screen flex items-center">
-        {/* Subtle gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-paper-50 via-white to-primary-50/30 opacity-80" />
-        
-        {/* Elegant floating elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-1/5 w-80 h-80 bg-primary-100/30 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/3 right-1/5 w-96 h-96 bg-accent-100/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
-          <div className="absolute top-2/3 left-2/3 w-64 h-64 bg-paper-200/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }} />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-4xl">
-            {/* Layover ecosystem headline */}
-            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl font-extralight text-paper-900 mb-10 leading-[0.9] tracking-tight">
-              Turn{" "}
-              <span className="font-light italic bg-gradient-to-r from-primary-500 via-primary-600 to-accent-500 bg-clip-text text-transparent">
-                layovers
-              </span>{" "}
-              into adventures
+      {/* Hero Section - Travel OTA Style */}
+      <section 
+        className="relative min-h-screen flex items-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1600&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-orange-500 text-white px-4 py-2 rounded-full mb-6 font-semibold text-sm">
+              <TrendingUp className="h-4 w-4 mr-2" />
+              Save up to 70% on flights with layover experiences
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Turn Layovers Into
+              <br />
+              <span className="text-orange-400">Amazing Adventures</span>
             </h1>
             
-            <p className="text-xl sm:text-2xl text-paper-700 mb-12 leading-relaxed font-light max-w-4xl">
-              Premium experiences at major US airline hubs. Save money, explore cities, transform your journey.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="group bg-gradient-to-r from-primary-500 to-primary-600 text-white px-10 py-5 rounded-2xl font-semibold hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-premium hover:shadow-premium-lg flex items-center justify-center transform hover:scale-[1.02]">
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="group bg-white text-primary-600 px-10 py-5 rounded-2xl font-semibold border-2 border-primary-200 hover:border-primary-300 hover:bg-primary-50 transition-all duration-300 shadow-sm hover:shadow-premium flex items-center justify-center">
-                <Play className="mr-2 h-5 w-5" />
-                Watch Story
-              </button>
-            </div>
-
-            {/* Trust indicators with sophisticated styling */}
-            <div className="flex flex-wrap justify-center gap-12 mt-16">
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-12 h-12 bg-success-50/80 backdrop-blur-sm rounded-2xl flex items-center justify-center mr-4 group-hover:bg-success-100 transition-all duration-300">
-                  <CheckCircle2 className="h-6 w-6 text-success-500" />
-                </div>
-                <div>
-                  <div className="text-lg font-medium text-paper-800">500K+</div>
-                  <div className="text-sm text-paper-500">Adventurers</div>
-                </div>
-              </div>
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-12 h-12 bg-accent-50/80 backdrop-blur-sm rounded-2xl flex items-center justify-center mr-4 group-hover:bg-accent-100 transition-all duration-300">
-                  <Star className="h-6 w-6 text-accent-500" />
-                </div>
-                <div>
-                  <div className="text-lg font-medium text-paper-800">4.9</div>
-                  <div className="text-sm text-paper-500">Rating</div>
-                </div>
-              </div>
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-12 h-12 bg-primary-50/80 backdrop-blur-sm rounded-2xl flex items-center justify-center mr-4 group-hover:bg-primary-100 transition-all duration-300">
-                  <Shield className="h-6 w-6 text-primary-500" />
-                </div>
-                <div>
-                  <div className="text-lg font-medium text-paper-800">Fully</div>
-                  <div className="text-sm text-paper-500">Insured</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Search Section - Apple-Inspired Elegance */}
-      <section className="py-32 bg-gradient-to-br from-paper-100 via-paper-200/80 to-primary-50/40 relative">
-        {/* Enhanced texture overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-paper-200/40 via-primary-50/20 to-accent-50/30" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            {/* Premium badge with sophisticated styling */}
-            <div className="inline-flex items-center bg-primary-50/80 backdrop-blur-sm text-primary-700 px-8 py-3 rounded-full mb-8 border border-primary-100/50 shadow-sm">
-              <Globe className="h-5 w-5 mr-3 text-primary-500" />
-              <span className="font-medium text-sm uppercase tracking-wider">Premium Travel Search</span>
-            </div>
-            
-            {/* Hero title with Apple-inspired typography */}
-            <h2 className="font-display text-6xl sm:text-7xl lg:text-8xl font-extralight text-paper-800 mb-8 leading-tight">
-              Where will your{" "}
-              <span className="font-light italic bg-gradient-to-r from-primary-500 via-primary-600 to-accent-500 bg-clip-text text-transparent">
-                adventure
-              </span>{" "}
-              begin?
-            </h2>
-            
-            <p className="text-xl text-paper-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Discover strategic layovers that transform waiting time into unforgettable experiences. 
-              Travel smarter, explore deeper, save more.
+            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Book flights with strategic layovers and explore incredible cities. Save money while creating unforgettable memories.
             </p>
           </div>
 
-          <div className="max-w-7xl mx-auto">
-            {/* Sophisticated search interface */}
-            <div className="bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border border-white/40 p-6 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 ring-1 ring-primary-100/50">
-              <div className="flex flex-col lg:flex-row gap-4">
-                {/* From input */}
-                <div className="flex-1 flex items-center px-10 py-8 rounded-[2rem] hover:bg-paper-50/50 transition-all duration-300 group">
-                  <MapPin className="h-7 w-7 text-primary-400 mr-5 group-hover:text-primary-500 transition-colors" />
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-primary-600 mb-2 uppercase tracking-wide">From</label>
-                    <input
-                      type="text"
-                      placeholder="Departure city"
-                      className="w-full outline-none text-xl font-light text-paper-800 placeholder-paper-400 bg-transparent"
-                    />
-                  </div>
+          {/* Travel Search Box - OTA Style */}
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              {/* Tab Navigation */}
+              <div className="border-b border-gray-200">
+                <div className="flex">
+                  <button
+                    onClick={() => setActiveTab("flights")}
+                    className={`flex items-center px-6 py-4 font-medium text-sm ${
+                      activeTab === "flights"
+                        ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    <Plane className="h-4 w-4 mr-2" />
+                    Layover Flights
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("experiences")}
+                    className={`flex items-center px-6 py-4 font-medium text-sm ${
+                      activeTab === "experiences"
+                        ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    <Star className="h-4 w-4 mr-2" />
+                    City Experiences
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("packages")}
+                    className={`flex items-center px-6 py-4 font-medium text-sm ${
+                      activeTab === "packages"
+                        ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    <Globe className="h-4 w-4 mr-2" />
+                    Flight + Experience
+                  </button>
                 </div>
-                
-                {/* To input */}
-                <div className="flex-1 flex items-center px-10 py-8 rounded-[2rem] hover:bg-paper-50/50 transition-all duration-300 group">
-                  <MapPin className="h-7 w-7 text-primary-400 mr-5 group-hover:text-primary-500 transition-colors" />
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-primary-600 mb-2 uppercase tracking-wide">To</label>
-                    <input
-                      type="text"
-                      placeholder="Destination city"
-                      className="w-full outline-none text-xl font-light text-paper-800 placeholder-paper-400 bg-transparent"
-                    />
-                  </div>
-                </div>
-                
-                {/* Dates input */}
-                <div className="flex-1 flex items-center px-10 py-8 rounded-[2rem] hover:bg-paper-50/50 transition-all duration-300 group">
-                  <Calendar className="h-7 w-7 text-primary-400 mr-5 group-hover:text-primary-500 transition-colors" />
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-primary-600 mb-2 uppercase tracking-wide">When</label>
-                    <input
-                      type="text"
-                      placeholder="Travel dates"
-                      className="w-full outline-none text-xl font-light text-paper-800 placeholder-paper-400 bg-transparent"
-                    />
-                  </div>
-                </div>
-                
-                {/* Search button */}
-                <button className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-12 py-8 rounded-[2rem] font-medium text-lg hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 transition-all duration-300 flex items-center justify-center shadow-[0_10px_25px_-5px_rgba(76,110,245,0.4)] hover:shadow-[0_15px_35px_-5px_rgba(76,110,245,0.5)] transform hover:scale-[1.02] min-w-[220px]">
-                  <Search className="h-6 w-6 mr-4" />
-                  Explore Now
-                </button>
               </div>
-            </div>
-            
-            {/* Premium features with elegant styling */}
-            <div className="flex flex-wrap justify-center gap-12 mt-16">
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-10 h-10 bg-success-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-success-100 transition-colors">
-                  <CheckCircle2 className="h-5 w-5 text-success-500" />
-                </div>
-                <span className="font-medium">Real-time availability</span>
-              </div>
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-primary-100 transition-colors">
-                  <Zap className="h-5 w-5 text-primary-500" />
-                </div>
-                <span className="font-medium">Instant booking</span>
-              </div>
-              <div className="flex items-center text-paper-600 group">
-                <div className="w-10 h-10 bg-accent-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-accent-100 transition-colors">
-                  <Shield className="h-5 w-5 text-accent-500" />
-                </div>
-                <span className="font-medium">24/7 premium support</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* US Airline Hub Showcase */}
-      <section className="py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center bg-accent-50/80 text-accent-700 px-6 py-3 rounded-full mb-8 border border-accent-100/50">
-              <Plane className="h-5 w-5 mr-3 text-accent-500" />
-              <span className="font-medium text-sm uppercase tracking-wider">US Airline Partners</span>
-            </div>
-            <h2 className="font-display text-fluid-5xl font-extralight text-paper-800 mb-6 leading-tight">
-              Premium{" "}
-              <span className="font-light italic bg-gradient-to-r from-accent-500 to-primary-500 bg-clip-text text-transparent">
-                hub
-              </span>{" "}
-              experiences
-            </h2>
-            <p className="text-fluid-lg text-paper-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Exclusive layover experiences at major US airline hubs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
-            {/* American Airlines - DFW */}
-            <div className="group bg-gradient-to-br from-red-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-red-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">AA</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">American</div>
-                  <div className="text-xs text-paper-500">Dallas DFW</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">Texas BBQ</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>6-12h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Authentic BBQ & cowboy culture</div>
-            </div>
-
-            {/* Delta - ATL */}
-            <div className="group bg-gradient-to-br from-blue-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-blue-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">DL</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">Delta</div>
-                  <div className="text-xs text-paper-500">Atlanta ATL</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">Southern Culture</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>4-10h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Civil rights tours & cuisine</div>
-            </div>
-
-            {/* United - ORD */}
-            <div className="group bg-gradient-to-br from-indigo-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-indigo-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">UA</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">United</div>
-                  <div className="text-xs text-paper-500">Chicago ORD</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">Deep Dish</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>5-14h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Pizza tours & architecture</div>
-            </div>
-
-            {/* Southwest - LAS */}
-            <div className="group bg-gradient-to-br from-orange-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-orange-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">WN</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">Southwest</div>
-                  <div className="text-xs text-paper-500">Las Vegas LAS</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">Vegas Lights</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>4-8h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Strip tours & shows</div>
-            </div>
-
-            {/* JetBlue - JFK */}
-            <div className="group bg-gradient-to-br from-cyan-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-cyan-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">B6</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">JetBlue</div>
-                  <div className="text-xs text-paper-500">New York JFK</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">NYC Icons</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>6-12h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Manhattan tours & Broadway</div>
-            </div>
-
-            {/* Alaska Airlines - SEA */}
-            <div className="group bg-gradient-to-br from-emerald-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-emerald-100/40">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-sm">AS</span>
-                </div>
-                <div>
-                  <div className="font-medium text-paper-800 text-sm">Alaska</div>
-                  <div className="text-xs text-paper-500">Seattle SEA</div>
-                </div>
-              </div>
-              <h3 className="font-display font-medium text-paper-800 mb-2">Pacific NW</h3>
-              <div className="flex items-center text-xs text-accent-600 mb-3">
-                <Clock className="h-3 w-3 mr-1" />
-                <span>5-10h layovers</span>
-              </div>
-              <div className="text-xs text-paper-600">Coffee culture & waterfront</div>
-            </div>
-          </div>
-
-          {/* Hub Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 py-12 border-t border-paper-200">
-            <div className="text-center bg-paper-50/50 rounded-xl p-4">
-              <div className="text-2xl font-display font-medium text-paper-800 mb-1">35+</div>
-              <div className="text-sm text-paper-600">Airport Hubs</div>
-            </div>
-            <div className="text-center bg-paper-50/50 rounded-xl p-4">
-              <div className="text-2xl font-display font-medium text-paper-800 mb-1">6</div>
-              <div className="text-sm text-paper-600">Major Airlines</div>
-            </div>
-            <div className="text-center bg-paper-50/50 rounded-xl p-4">
-              <div className="text-2xl font-display font-medium text-paper-800 mb-1">$420</div>
-              <div className="text-sm text-paper-600">Avg Savings</div>
-            </div>
-            <div className="text-center bg-paper-50/50 rounded-xl p-4">
-              <div className="text-2xl font-display font-medium text-paper-800 mb-1">4-16h</div>
-              <div className="text-sm text-paper-600">Layover Range</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Destinations Grid - Editorial Style */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <h2 className="font-display text-4xl font-light text-ink-900 mb-4">
-              Featured Destinations
-            </h2>
-            <p className="text-ink-600 max-w-2xl">
-              Curated cities perfect for layover adventures, each offering unique experiences within hours
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {destinations.map((dest, index) => (
-              <div
-                key={index}
-                className="group cursor-pointer"
-              >
-                {/* Image Container */}
-                <div className="relative h-80 mb-4 overflow-hidden rounded-2xl">
-                  <Image
-                    src={dest.image}
-                    alt={dest.city}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-                  
-                  {/* Overlay Content */}
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-display font-medium text-white mb-1">
-                      {dest.city}
-                    </h3>
-                    <p className="text-white/80 text-sm">{dest.country}</p>
-                  </div>
-
-                  {/* Savings Badge */}
-                  <div className="absolute top-6 right-6">
-                    <div className="bg-white/90 backdrop-blur-md rounded-full px-3 py-1">
-                      <span className="text-sm font-semibold text-ink-900">
-                        {dest.avgSavings}
-                      </span>
+              {/* Search Form */}
+              <div className="p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">From</label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Departure city"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
                     </div>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div>
-                  <p className="text-ink-900 font-medium mb-2">{dest.highlight}</p>
-                  <div className="flex items-center gap-4 text-sm text-ink-500">
-                    <span className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1" />
-                      {dest.layoverTime}
-                    </span>
-                    <span className="flex items-center">
-                      <Camera className="w-4 h-4 mr-1" />
-                      {dest.experiences} experiences
-                    </span>
+                  
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">To</label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Destination city"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Departure</label>
+                    <div className="relative">
+                      <Calendar className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Select date"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-end">
+                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center">
+                      <Search className="h-5 w-5 mr-2" />
+                      Search
+                    </button>
                   </div>
                 </div>
+
+                <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gray-200">
+                  <label className="flex items-center text-sm text-gray-600">
+                    <input type="checkbox" className="mr-2 rounded" />
+                    Long layovers (8+ hours)
+                  </label>
+                  <label className="flex items-center text-sm text-gray-600">
+                    <input type="checkbox" className="mr-2 rounded" />
+                    Include nearby airports
+                  </label>
+                  <label className="flex items-center text-sm text-gray-600">
+                    <input type="checkbox" className="mr-2 rounded" />
+                    Premium experiences only
+                  </label>
+                </div>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Trust Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto mt-12 text-center">
+            <div className="text-white">
+              <div className="text-2xl font-bold">$420</div>
+              <div className="text-gray-300 text-sm">Average Savings</div>
+            </div>
+            <div className="text-white">
+              <div className="text-2xl font-bold">500K+</div>
+              <div className="text-gray-300 text-sm">Happy Travelers</div>
+            </div>
+            <div className="text-white">
+              <div className="text-2xl font-bold">4.8★</div>
+              <div className="text-gray-300 text-sm">Customer Rating</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features - Card Grid */}
-      <section className="py-24 bg-ink-50/30">
+      {/* Popular Destinations - Travel OTA Style */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-display text-4xl font-light text-ink-900 mb-4">
-              Why Choose LayoverHQ
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Popular Layover Destinations
             </h2>
-            <p className="text-ink-600 max-w-2xl mx-auto">
-              We've reimagined travel to make every journey an adventure
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Discover amazing cities during your layover and save on your journey
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-premium transition-all duration-300"
-              >
-                <div className="w-12 h-12 bg-ink-100 rounded-xl flex items-center justify-center mb-6">
-                  <feature.icon className="h-6 w-6 text-ink-700" />
+            {destinations.map((destination, index) => (
+              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
+                <div className="relative h-56">
+                  <Image
+                    src={destination.image}
+                    alt={destination.city}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
+                    <span className="text-sm font-bold">{destination.price}</span>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <h3 className="font-bold text-xl text-white mb-1">{destination.city}</h3>
+                    <p className="text-white/90 text-sm">{destination.country}</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-ink-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-ink-500 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+                
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
+                      <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Clock className="h-4 w-4 mr-1" />
+                      <span>{destination.layover}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm text-gray-600">
+                      <span>Layover experiences</span>
+                    </div>
+                    <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
+                      Explore
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Video Section - Immersive */}
-      <section className="py-24 bg-white">
+      {/* Today's Deals - Travel OTA Style */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="font-display text-4xl font-light text-ink-900 mb-6">
-                Every layover has a story
-              </h2>
-              <p className="text-ink-600 mb-8 text-lg leading-relaxed">
-                Watch how travelers are transforming dead time into lifetime memories. 
-                From sunrise in Santorini to sunset in Singapore, every moment counts.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-1 h-12 bg-gradient-to-b from-accent-coral to-accent-sunset mr-4" />
-                  <div>
-                    <h3 className="font-semibold text-ink-900 mb-1">Save intelligently</h3>
-                    <p className="text-ink-500">Average savings of $450 per trip through strategic routing</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Today's Best Deals</h2>
+              <p className="text-gray-600">Limited-time offers on layover experiences</p>
+            </div>
+            <Link href="/deals" className="text-blue-600 hover:text-blue-700 font-medium flex items-center">
+              View all deals
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Featured Deal - Enhanced */}
+            <div className="lg:col-span-2 relative overflow-hidden rounded-2xl">
+              <div className="absolute inset-0">
+                <Image
+                  src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80"
+                  alt="NYC Skyline"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-purple-900/90" />
+              </div>
+              <div className="relative p-8 text-white">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="bg-orange-500 px-4 py-2 rounded-full text-sm font-bold">
+                    🔥 FEATURED DEAL
+                  </div>
+                  <div className="bg-red-500 px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                    LIMITED TIME
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="w-1 h-12 bg-gradient-to-b from-accent-ocean to-accent-sage mr-4" />
-                  <div>
-                    <h3 className="font-semibold text-ink-900 mb-1">Explore confidently</h3>
-                    <p className="text-ink-500">Every experience timed perfectly with guaranteed connections</p>
+                <h3 className="text-3xl font-bold mb-3">New York City Explorer</h3>
+                <p className="text-blue-100 mb-4 text-lg leading-relaxed">8-hour layover package including helicopter tour, Central Park walk, Times Square visit, and premium airport transfers</p>
+                <div className="flex items-center space-x-6 mb-6">
+                  <div className="flex items-center">
+                    <Star className="h-5 w-5 text-yellow-400 fill-current" />
+                    <span className="ml-2 font-semibold">4.8 (1,240 reviews)</span>
                   </div>
+                  <div className="flex items-center font-semibold">
+                    <Clock className="h-5 w-5 mr-2" />
+                    Expires in 6h 23m
+                  </div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-blue-200 line-through text-xl">$1,249</span>
+                    <span className="text-4xl font-bold ml-3">$879</span>
+                    <div className="text-green-400 font-semibold mt-1">Save $370 (30% off)</div>
+                  </div>
+                  <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
+                    Book Now
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-premium-lg">
-              <Image
-                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
-                alt="Travel Video"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                <button className="bg-white rounded-full p-6 shadow-premium hover:scale-105 transition-transform group">
-                  <Play className="h-8 w-8 text-ink-900 ml-1" />
-                </button>
+            {/* Side Deals - Enhanced */}
+            <div className="space-y-6">
+              <div className="relative overflow-hidden bg-white border border-gray-200 rounded-xl hover:shadow-xl transition-all duration-300 group">
+                <div className="absolute inset-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=400&q=80"
+                    alt="Chicago"
+                    fill
+                    className="object-cover opacity-20 group-hover:opacity-30 transition-opacity"
+                  />
+                </div>
+                <div className="relative p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-bold text-gray-900 text-lg">Chicago Deep Dish Tour</h4>
+                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Save 33%</span>
+                  </div>
+                  <p className="text-gray-600 mb-4">12-hour layover • Architecture cruise • Millennium Park</p>
+                  <div className="flex items-center mb-4">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="text-sm font-semibold text-gray-700 ml-1">4.9 (890)</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-gray-400 line-through text-lg">$967</span>
+                      <span className="text-2xl font-bold text-gray-900 ml-2">$649</span>
+                    </div>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                      Book Deal
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden bg-white border border-gray-200 rounded-xl hover:shadow-xl transition-all duration-300 group">
+                <div className="absolute inset-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=400&q=80"
+                    alt="Dallas"
+                    fill
+                    className="object-cover opacity-20 group-hover:opacity-30 transition-opacity"
+                  />
+                </div>
+                <div className="relative p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-bold text-gray-900 text-lg">Dallas BBQ Experience</h4>
+                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Save 28%</span>
+                  </div>
+                  <p className="text-gray-600 mb-4">9-hour layover • Stockyards tour • Authentic BBQ</p>
+                  <div className="flex items-center mb-4">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="text-sm font-semibold text-gray-700 ml-1">4.7 (650)</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-gray-400 line-through text-lg">$834</span>
+                      <span className="text-2xl font-bold text-gray-900 ml-2">$599</span>
+                    </div>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                      Book Deal
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial - Single Feature */}
-      <section className="py-24 bg-ink-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8">
-            <div className="flex justify-center mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-accent-gold fill-current" />
-              ))}
-            </div>
-            <p className="font-display text-2xl lg:text-3xl font-light leading-relaxed mb-8">
-              "LayoverHQ didn't just save me $400 on my flight to Dubai. 
-              It gave me 12 unforgettable hours in Istanbul – a city I never planned to visit 
-              but now can't wait to return to."
-            </p>
-            <div className="flex items-center justify-center">
-              <Image
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
-                alt="Sarah Chen"
-                width={56}
-                height={56}
-                className="rounded-full mr-4"
-              />
-              <div className="text-left">
-                <div className="font-semibold">Sarah Chen</div>
-                <div className="text-white/70 text-sm">Digital Nomad • NYC → Dubai</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Minimal */}
-      <section className="py-24 bg-gradient-to-br from-ink-50 to-warm-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl lg:text-5xl font-light text-ink-900 mb-6">
-            Ready to change how you travel?
-          </h2>
-          <p className="text-xl text-ink-600 mb-10">
-            Join 500,000+ adventurers who've discovered the joy of intentional layovers
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-ink-900 text-white px-8 py-4 rounded-2xl font-medium hover:bg-ink-800 transition-all duration-300 shadow-premium hover:shadow-premium-lg">
-              Start Free Trial
-            </button>
-            <button className="bg-white text-ink-900 px-8 py-4 rounded-2xl font-medium border border-ink-200 hover:border-ink-300 transition-all duration-300">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer - Clean */}
-      <footer className="bg-white border-t border-ink-100 py-16">
+      {/* Customer Testimonials - Travel OTA Style */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Travelers Say</h2>
+            <p className="text-lg text-gray-600">Real stories from real adventures</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 italic">
+                "LayoverHQ turned my 9-hour Chicago layover into the best part of my trip! The deep dish tour was incredible and I made it back with time to spare."
+              </p>
+              <div className="flex items-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
+                  alt="Sarah Chen"
+                  width={48}
+                  height={48}
+                  className="rounded-full mr-3"
+                />
+                <div>
+                  <div className="font-semibold text-gray-900">Sarah Chen</div>
+                  <div className="text-sm text-gray-500">Business Traveler</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 italic">
+                "Saved $400 on my flight to London AND got to see the Statue of Liberty during my NYC layover. This is genius!"
+              </p>
+              <div className="flex items-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+                  alt="Mike Rodriguez"
+                  width={48}
+                  height={48}
+                  className="rounded-full mr-3"
+                />
+                <div>
+                  <div className="font-semibold text-gray-900">Mike Rodriguez</div>
+                  <div className="text-sm text-gray-500">Digital Nomad</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4 italic">
+                "Perfect timing, amazing experiences, and incredible value. LayoverHQ makes travel so much more exciting!"
+              </p>
+              <div className="flex items-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
+                  alt="Emma Thompson"
+                  width={48}
+                  height={48}
+                  className="rounded-full mr-3"
+                />
+                <div>
+                  <div className="font-semibold text-gray-900">Emma Thompson</div>
+                  <div className="text-sm text-gray-500">Frequent Flyer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges & Partners */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <p className="text-gray-600 text-sm uppercase tracking-wide font-semibold">Trusted by major airlines</p>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            <div className="text-2xl font-bold text-gray-600">American Airlines</div>
+            <div className="text-2xl font-bold text-gray-600">Delta</div>
+            <div className="text-2xl font-bold text-gray-600">United</div>
+            <div className="text-2xl font-bold text-gray-600">Southwest</div>
+            <div className="text-2xl font-bold text-gray-600">JetBlue</div>
+          </div>
+          <div className="flex justify-center items-center gap-8 mt-8">
+            <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
+              <Shield className="h-5 w-5 text-green-600 mr-2" />
+              <span className="text-sm font-medium text-gray-700">SSL Secured</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
+              <CheckCircle2 className="h-5 w-5 text-blue-600 mr-2" />
+              <span className="text-sm font-medium text-gray-700">IATA Certified</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
+              <Award className="h-5 w-5 text-orange-600 mr-2" />
+              <span className="text-sm font-medium text-gray-700">Travel Award 2024</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us - Enhanced */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Book with LayoverHQ?</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Join 500,000+ travelers who've discovered the smart way to fly</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center group hover:bg-blue-50 p-6 rounded-xl transition-all duration-300">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                <Shield className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">100% Protected</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Comprehensive travel insurance, 24/7 support, and guaranteed connection protection</p>
+            </div>
+
+            <div className="text-center group hover:bg-green-50 p-6 rounded-xl transition-all duration-300">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                <CheckCircle2 className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Perfect Timing</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">AI-optimized schedules ensure you never miss your connection while maximizing adventure time</p>
+            </div>
+
+            <div className="text-center group hover:bg-orange-50 p-6 rounded-xl transition-all duration-300">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
+                <Award className="h-8 w-8 text-orange-600" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Expert Curated</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Hand-picked experiences by local travel experts and verified by thousands of reviews</p>
+            </div>
+
+            <div className="text-center group hover:bg-purple-50 p-6 rounded-xl transition-all duration-300">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
+                <TrendingUp className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">Best Value</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Save up to 70% vs booking separately, with price match guarantee and exclusive deals</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - Travel OTA Style */}
+      <footer className="bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-ink-900 rounded-xl flex items-center justify-center">
-                  <Plane className="h-5 w-5 text-white transform rotate-45" />
-                </div>
-                <span className="font-mono font-semibold text-xl text-ink-900">
-                  LayoverHQ
-                </span>
+                <Image
+                  src="/brand/layoverhq-logo-correct.svg"
+                  alt="LayoverHQ Logo"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8"
+                />
+                <span className="font-bold text-xl">LayoverHQ</span>
               </div>
-              <p className="text-ink-500 text-sm">
-                Transforming layovers into adventures since 2024.
+              <p className="text-gray-400 text-sm mb-4">
+                Turn your layovers into amazing adventures. Book flights with strategic stops and explore the world.
               </p>
+              <div className="flex space-x-4">
+                <div className="flex items-center text-sm">
+                  <Star className="h-4 w-4 text-yellow-400 fill-current mr-1" />
+                  <span>4.8/5 rating</span>
+                </div>
+                <div className="text-sm text-gray-400">500K+ travelers</div>
+              </div>
             </div>
             
             <div>
-              <h3 className="font-semibold text-ink-900 mb-4">Product</h3>
-              <ul className="space-y-2 text-ink-500 text-sm">
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Features</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Pricing</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Business</Link></li>
+              <h3 className="font-semibold mb-4">Book</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="#" className="hover:text-white">Layover Flights</Link></li>
+                <li><Link href="#" className="hover:text-white">City Experiences</Link></li>
+                <li><Link href="#" className="hover:text-white">Travel Packages</Link></li>
+                <li><Link href="#" className="hover:text-white">Group Bookings</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold text-ink-900 mb-4">Company</h3>
-              <ul className="space-y-2 text-ink-500 text-sm">
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">About</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Blog</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Careers</Link></li>
+              <h3 className="font-semibold mb-4">Support</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="#" className="hover:text-white">Help Center</Link></li>
+                <li><Link href="#" className="hover:text-white">Contact Us</Link></li>
+                <li><Link href="#" className="hover:text-white">Travel Insurance</Link></li>
+                <li><Link href="#" className="hover:text-white">Cancellation Policy</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold text-ink-900 mb-4">Support</h3>
-              <ul className="space-y-2 text-ink-500 text-sm">
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Help</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Contact</Link></li>
-                <li><Link href="#" className="hover:text-ink-900 transition-colors">Privacy</Link></li>
+              <h3 className="font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><Link href="#" className="hover:text-white">About Us</Link></li>
+                <li><Link href="#" className="hover:text-white">Careers</Link></li>
+                <li><Link href="#" className="hover:text-white">Press</Link></li>
+                <li><Link href="#" className="hover:text-white">Partners</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-ink-100 mt-12 pt-8 text-center">
-            <p className="text-ink-400 text-sm">
-              © 2024 LayoverHQ. All rights reserved. Here's to the crazy ones.
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 LayoverHQ. All rights reserved. | Privacy Policy | Terms of Service
             </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
