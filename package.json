@@ -82,7 +82,7 @@
     "sonner": "^1.7.4",
     "stripe": "^18.4.0",
     "svelte": "latest",
-    "tailwind-merge": "^2.5.5",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.1.0",
     "vaul": "^0.9.9",
