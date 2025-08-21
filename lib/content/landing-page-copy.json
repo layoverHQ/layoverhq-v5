@@ -1,0 +1,111 @@
+{
+  "hero": {
+    "headline": "Turn Layovers Into Adventures",
+    "subheadline": "Book curated city experiences during airport connections and make every travel hour count",
+    "cta_primary": "Find Adventures",
+    "cta_secondary": "See How It Works"
+  },
+  "value_propositions": [
+    {
+      "title": "No More Airport Jail Time",
+      "description": "Transform 4+ hour layovers into unforgettable city escapes with expert-curated experiences."
+    },
+    {
+      "title": "Risk-Free Timing Guarantee", 
+      "description": "Our AI calculates perfect timing windows so you never miss your connecting flight."
+    },
+    {
+      "title": "Instant City Access",
+      "description": "Skip the research - we've mapped every airport's best nearby adventures within reach."
+    }
+  ],
+  "how_it_works": {
+    "title": "Three Steps to Adventure",
+    "steps": [
+      {
+        "title": "Upload Your Itinerary",
+        "description": "Share your flight details and we'll instantly identify layover opportunities",
+        "icon": "upload"
+      },
+      {
+        "title": "Choose Your Adventure",
+        "description": "Browse curated experiences perfectly timed for your connection window",
+        "icon": "compass"
+      },
+      {
+        "title": "Go Explore",
+        "description": "Follow our optimized routes and return refreshed, not exhausted",
+        "icon": "airplane"
+      }
+    ]
+  },
+  "social_proof": {
+    "tagline": "Trusted by 50,000+ Smart Travelers",
+    "testimonials": [
+      {
+        "quote": "Turned my 6-hour Paris layover into a Seine river cruise and Louvre visit. Best travel hack ever!",
+        "author": "Sarah K.",
+        "location": "Digital Nomad"
+      },
+      {
+        "quote": "Made $200 in layover time feel like a mini-vacation. The timing was perfect - stress-free.",
+        "author": "Marcus T.", 
+        "location": "Business Traveler"
+      },
+      {
+        "quote": "Instead of sleeping in Frankfurt airport, I explored the city center. Game changer.",
+        "author": "Priya M.",
+        "location": "Frequent Flyer"
+      }
+    ]
+  },
+  "features": [
+    {
+      "title": "Smart Timing Engine",
+      "description": "AI-powered calculations ensure you're back at the gate with time to spare"
+    },
+    {
+      "title": "Local Expert Curation",
+      "description": "Hand-picked experiences from destination insiders, not tourist traps"
+    },
+    {
+      "title": "Real-Time Updates",
+      "description": "Live flight monitoring and automatic rebooking if delays occur"
+    },
+    {
+      "title": "Baggage Solutions",
+      "description": "Partner with storage services and luggage transfers for hands-free exploring"
+    },
+    {
+      "title": "Group Adventures",
+      "description": "Connect with fellow travelers on the same layover for shared experiences"
+    },
+    {
+      "title": "Mobile-First Design",
+      "description": "Everything you need accessible offline, because airport wifi is terrible"
+    }
+  ],
+  "cta_section": {
+    "headline": "Your Next Layover Awaits",
+    "subheadline": "Join thousands who've discovered the secret to making travel time adventure time",
+    "cta_button": "Start Exploring",
+    "urgency_text": "Available in 200+ airports worldwide"
+  },
+  "footer_tagline": "Making Every Hour Count",
+  "brand_statements": {
+    "mission": "We believe travel time should never be wasted time",
+    "vision": "Transforming the world's busiest airports into gateways to adventure",
+    "promise": "Every layover is an opportunity. We make sure you seize it."
+  },
+  "power_words": [
+    "Transform", "Seize", "Unlock", "Discover", "Escape", "Adventure", 
+    "Elite", "Curated", "Exclusive", "Premium", "Smart", "Effortless"
+  ],
+  "urgency_phrases": [
+    "Limited availability",
+    "Book before your flight",
+    "While gates are still open",
+    "Don't miss out",
+    "Adventure awaits"
+  ]
+}

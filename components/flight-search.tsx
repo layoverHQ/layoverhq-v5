@@ -384,7 +384,7 @@ export function FlightSearch({ onSearch, loading = false }: FlightSearchProps) {
       CDG: {
         name: "Paris",
         country: "France",
-        image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400&h=200&fit=crop",
+        image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=200&fit=crop",
         minExploreTime: 360,
         highlights: ["Eiffel Tower", "Louvre Museum", "Champs-Élysées"],
         transport: "RER B to city center (45 min)",

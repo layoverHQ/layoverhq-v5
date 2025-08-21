@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { 
-  Plane, Clock, MapPin, Wifi, Battery, Signal, Weather, 
+  Plane, Clock, MapPin, Wifi, Battery, Signal, Cloud, 
   Navigation, Phone, Shield, CreditCard, FileText, 
   Heart, Star, ChevronRight, RefreshCw, AlertCircle,
   Compass, Timer, BellRing, Info, Zap
@@ -193,7 +193,7 @@ export function WeatherLocationWidget({ city }: { city: string }) {
             <MapPin className="h-4 w-4 text-blue-500" />
             <span className="text-sm font-medium">{city}</span>
           </div>
-          <Weather className="h-4 w-4 text-gray-400" />
+          <Cloud className="h-4 w-4 text-gray-400" />
         </div>
         
         <div className="flex items-center justify-between">

@@ -16,3 +16,6 @@ export const createServiceRoleClient = () => {
     },
   })
 }
+
+// Export for unified travel buddy modules
+export const Supabase = createServiceRoleClient
