@@ -15,7 +15,11 @@ import {
 import { ResponsiveTravelDashboard } from './responsive-travel-dashboard'
 import { MobileTravelWidgets } from './mobile-travel-widgets'
 import { AISearchInterface } from './ai-search-interface'
+<<<<<<< HEAD
 import { PersonalizedTravelDashboard } from './personalized-travel-dashboard'
+=======
+import PersonalizedTravelDashboard from './personalized-travel-dashboard'
+>>>>>>> be4f42c (Add CI/CD setup scripts and documentation for LayoverHQ)
 
 // Types for unified data
 interface UnifiedTravelData {

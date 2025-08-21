@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "badge": "Used by travelers in 200+ cities",
+    "headline": "Stop wasting layover time",
+    "subheadline": "Got 4+ hours between flights? We'll show you what to do in the city instead of sitting in the airport.",
+    "cta_primary": "See what's available",
+    "cta_secondary": "Try it out"
+  },
+  "value_propositions": {
+    "title": "Why travelers use us",
+    "subtitle": "Because airport food courts get old after hour 3",
+    "points": [
+      {
+        "title": "You won't miss your flight",
+        "description": "We build in buffer time so you're back at the gate relaxed, not sprinting through security."
+      },
+      {
+        "title": "Locals pick the spots", 
+        "description": "No tourist traps. Our city guides live there and know what's actually worth your time."
+      },
+      {
+        "title": "Transport included",
+        "description": "Airport pickup, city transport, luggage storage - we handle the logistics so you just enjoy."
+      }
+    ]
+  },
+  "how_it_works": {
+    "title": "How it works",
+    "subtitle": "Three steps and you're exploring instead of waiting",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Tell us your flights",
+        "description": "Send us your layover city and how long you've got - we'll see what's possible"
+      },
+      {
+        "number": 2,
+        "title": "Pick what looks good",
+        "description": "We'll show you a few options that fit your timing - quick city tour, local food, whatever you're into"
+      },
+      {
+        "number": 3,
+        "title": "Go do it",
+        "description": "Meet your guide, see the city, get back to the airport with time to spare"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What people say",
+    "subtitle": "From actual travelers who've done this",
+    "reviews": [
+      {
+        "quote": "Had 8 hours in Paris between flights to Tokyo. Instead of sleeping on airport chairs, I saw the Eiffel Tower and ate actual French food. Got back with an hour to spare.",
+        "author": "Sarah K.",
+        "location": "Designer from Portland"
+      },
+      {
+        "quote": "My company books weird connecting flights to save money. This made my 10-hour Chicago layover actually enjoyable. Did the architecture boat tour and deep dish pizza.",
+        "author": "Marcus T.",
+        "location": "Travels for work"
+      },
+      {
+        "quote": "Had a 12-hour overnight layover in Frankfurt. Thought I'd just sleep in the airport, but they got me a walking tour and dinner in the old town. Way better than airport food.",
+        "author": "Priya M.",
+        "location": "Flies a lot for consulting"
+      }
+    ]
+  },
+  "features": {
+    "title": "How we make it work",
+    "subtitle": "The practical stuff that makes layover tours actually doable",
+    "items": [
+      {
+        "title": "We do the math on timing",
+        "description": "Immigration lines, transport time, getting back through security - we factor it all in so you don't stress"
+      },
+      {
+        "title": "Locals know what's good",
+        "description": "Our guides live in these cities and actually know the best spots, not just the famous ones"
+      },
+      {
+        "title": "We watch your flight",
+        "description": "If your flight gets delayed or changed, we adjust everything automatically - no scrambling"
+      },
+      {
+        "title": "Leave your bags behind",
+        "description": "We can store your carry-on or arrange checked bag transfers so you're not dragging luggage around the city"
+      },
+      {
+        "title": "Solo or with others",
+        "description": "Go alone if you want, or we can match you with other travelers on the same layover"
+      },
+      {
+        "title": "Works on your phone",
+        "description": "All the info you need works offline because airport wifi is usually garbage"
+      }
+    ]
+  },
+  "final_cta": {
+    "headline": "Got a layover coming up?",
+    "subheadline": "Stop wasting time in airports. Let's see what you can do in the city instead.",
+    "primary_button": "Check your options",
+    "secondary_button": "See what others did",
+    "disclaimer": "We work in most major airports"
+  },
+  "footer": {
+    "tagline": "Layovers don't have to suck. We help travelers make the most of connection time by exploring cities instead of sitting in airports."
+  },
+  "tone_notes": {
+    "voice": "Conversational, helpful, unpretentious",
+    "avoid": "Corporate speak, superlatives, marketing jargon",
+    "style": "Direct, practical, like talking to a friend who travels a lot",
+    "personality": "Knows travel pain points, solutions-focused, not trying to oversell"
+  }
+}
