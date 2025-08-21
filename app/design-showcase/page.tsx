@@ -1,277 +1,372 @@
 "use client"
 
-import { useState } from "react"
-import { EnterpriseButton } from "@/design-system/components/enterprise-button"
-import { EnterpriseCard } from "@/design-system/components/enterprise-card"
-import { EnterpriseInput } from "@/design-system/components/enterprise-input"
-import { Plane, MapPin, Calendar, Users, Star, TrendingUp, Shield, Zap } from "lucide-react"
+import React, { useState } from 'react'
+import { 
+  Button,
+  Input,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  Badge,
+  Select,
+  FlightCard,
+  Navigation
+} from '@/components/design-system'
+import { 
+  Plane, 
+  MapPin, 
+  Calendar, 
+  Users, 
+  Star, 
+  TrendingUp, 
+  Shield, 
+  Zap,
+  Clock,
+  ArrowRight,
+  Check,
+  Globe,
+  DollarSign
+} from 'lucide-react'
 
 export default function DesignShowcase() {
-  const [inputValue, setInputValue] = useState("")
-  const [selectedCard, setSelectedCard] = useState<number | null>(null)
+  const [inputValue, setInputValue] = useState('')
+  const [selectValue, setSelectValue] = useState('economy')
+
+  const sampleFlight = {
+    id: '1',
+    airline: 'Emirates',
+    route: {
+      origin: { code: 'JFK', time: '09:30' },
+      destination: { code: 'DXB', time: '14:45' }
+    },
+    duration: '14h 15m',
+    stops: 1,
+    layover: {
+      city: 'Dubai',
+      duration: '8 hours',
+      experiences: 12
+    },
+    price: {
+      current: 899,
+      original: 1299,
+      currency: 'USD'
+    },
+    rating: 4.8
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50">
-      {/* Hero Section with Morphic Effects */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10 animate-gradient" />
-        <div className="container mx-auto px-4 py-16">
-          <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-orange-600 animate-text-shimmer">
-            LayoverHQ Design System
-          </h1>
-          <p className="text-xl text-center text-gray-600 mb-12">
-            Enterprise-Grade Components for Next-Gen Travel
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Navigation Demo */}
+      <Navigation />
+      
+      <div className="pt-20">
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-primary-600 to-accent-500 text-white">
+          <div className="container mx-auto px-4 py-16">
+            <h1 className="text-5xl font-bold text-center mb-4">
+              LayoverHQ Design System
+            </h1>
+            <p className="text-xl text-center opacity-90">
+              Google Flights & Priceline Inspired Components
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Button Showcase */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8 text-gray-900">Enterprise Buttons</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <EnterpriseButton variant="primary" size="lg">
-            <Plane className="mr-2" /> Search Flights
-          </EnterpriseButton>
-          <EnterpriseButton variant="secondary" size="lg">
-            <MapPin className="mr-2" /> Explore Cities
-          </EnterpriseButton>
-          <EnterpriseButton variant="primary" size="lg">
-            <Shield className="mr-2" /> Book Now
-          </EnterpriseButton>
-          <EnterpriseButton variant="airline" size="lg">
-            <Zap className="mr-2" /> Quick Layover
-          </EnterpriseButton>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <EnterpriseButton variant="outline" size="md">
-            Outline
-          </EnterpriseButton>
-          <EnterpriseButton variant="ghost" size="md">
-            Ghost
-          </EnterpriseButton>
-          <EnterpriseButton variant="hotel" size="md">
-            Hotel
-          </EnterpriseButton>
-          <EnterpriseButton variant="experience" size="md">
-            Experience
-          </EnterpriseButton>
-          <EnterpriseButton variant="primary" size="sm">
-            Small
-          </EnterpriseButton>
-          <EnterpriseButton variant="primary" size="icon">
-            <Star />
-          </EnterpriseButton>
-        </div>
-      </section>
+        {/* Typography Section */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Typography</h2>
+          <div className="space-y-4 bg-white p-8 rounded-lg border border-gray-200">
+            <h1 className="text-5xl font-light">Hero Heading</h1>
+            <h2 className="text-3xl font-medium">Section Heading</h2>
+            <h3 className="text-2xl font-medium">Subsection Heading</h3>
+            <h4 className="text-xl font-medium">Card Title</h4>
+            <p className="text-base text-gray-700">Body text - This is how regular paragraph text appears in our design system.</p>
+            <p className="text-sm text-gray-600">Small text - Used for secondary information and descriptions.</p>
+            <p className="text-xs text-gray-500">Caption text - For timestamps and minor details.</p>
+          </div>
+        </section>
 
-      {/* Card Showcase */}
-      <section className="container mx-auto px-4 py-16 bg-white/50 backdrop-blur-sm rounded-3xl">
-        <h2 className="text-3xl font-bold mb-8 text-gray-900">Enterprise Cards</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <EnterpriseCard
-            variant="flight"
-            className={selectedCard === 1 ? "ring-4 ring-orange-500" : ""}
-            onClick={() => setSelectedCard(1)}
-          >
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">NYC → LON</h3>
-                <p className="text-gray-600">via Reykjavik</p>
+        {/* Color Palette */}
+        <section className="container mx-auto px-4 py-16 bg-gray-50">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Color Palette</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {/* Primary Colors */}
+            <div className="space-y-2">
+              <h3 className="font-medium text-gray-900">Primary (Google Blue)</h3>
+              <div className="space-y-2">
+                <div className="h-16 bg-primary-50 rounded-lg flex items-center justify-center text-sm">50</div>
+                <div className="h-16 bg-primary-100 rounded-lg flex items-center justify-center text-sm">100</div>
+                <div className="h-16 bg-primary-500 rounded-lg flex items-center justify-center text-white">500</div>
+                <div className="h-16 bg-primary-700 rounded-lg flex items-center justify-center text-white">700</div>
+                <div className="h-16 bg-primary-900 rounded-lg flex items-center justify-center text-white">900</div>
               </div>
-              <span className="text-2xl font-bold text-orange-600">$459</span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
-              <span className="flex items-center">
-                <Calendar className="w-4 h-4 mr-1" /> Mar 15
-              </span>
-              <span className="flex items-center">
-                <Users className="w-4 h-4 mr-1" /> 2 Adults
-              </span>
+            
+            {/* Accent Colors */}
+            <div className="space-y-2">
+              <h3 className="font-medium text-gray-900">Accent (Priceline Orange)</h3>
+              <div className="space-y-2">
+                <div className="h-16 bg-accent-50 rounded-lg flex items-center justify-center text-sm">50</div>
+                <div className="h-16 bg-accent-100 rounded-lg flex items-center justify-center text-sm">100</div>
+                <div className="h-16 bg-accent-500 rounded-lg flex items-center justify-center text-white">500</div>
+                <div className="h-16 bg-accent-700 rounded-lg flex items-center justify-center text-white">700</div>
+                <div className="h-16 bg-accent-900 rounded-lg flex items-center justify-center text-white">900</div>
+              </div>
             </div>
-            <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-orange-50 rounded-lg">
-              <p className="text-sm font-semibold text-blue-900">8-hour layover adventure!</p>
-              <p className="text-xs text-gray-600">Explore the Blue Lagoon & Reykjavik</p>
-            </div>
-          </EnterpriseCard>
 
-          <EnterpriseCard
-            variant="experience"
-            className={selectedCard === 2 ? "ring-4 ring-orange-500" : ""}
-            onClick={() => setSelectedCard(2)}
-          >
-            <img
-              src="/placeholder.jpg"
-              alt="Doha Souq"
-              className="w-full h-48 object-cover rounded-lg mb-4"
+            {/* Semantic Colors */}
+            <div className="space-y-2">
+              <h3 className="font-medium text-gray-900">Semantic</h3>
+              <div className="space-y-2">
+                <div className="h-16 bg-success-500 rounded-lg flex items-center justify-center text-white">Success</div>
+                <div className="h-16 bg-warning-500 rounded-lg flex items-center justify-center text-gray-900">Warning</div>
+                <div className="h-16 bg-error-500 rounded-lg flex items-center justify-center text-white">Error</div>
+              </div>
+            </div>
+
+            {/* Grays */}
+            <div className="space-y-2">
+              <h3 className="font-medium text-gray-900">Neutral</h3>
+              <div className="space-y-2">
+                <div className="h-16 bg-gray-100 rounded-lg flex items-center justify-center text-sm">100</div>
+                <div className="h-16 bg-gray-300 rounded-lg flex items-center justify-center text-sm">300</div>
+                <div className="h-16 bg-gray-500 rounded-lg flex items-center justify-center text-white">500</div>
+                <div className="h-16 bg-gray-700 rounded-lg flex items-center justify-center text-white">700</div>
+                <div className="h-16 bg-gray-900 rounded-lg flex items-center justify-center text-white">900</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Button Components */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Buttons</h2>
+          
+          <div className="space-y-8">
+            {/* Button Variants */}
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">Variants</h3>
+              <div className="flex flex-wrap gap-4">
+                <Button variant="primary">Primary Button</Button>
+                <Button variant="secondary">Secondary Button</Button>
+                <Button variant="ghost">Ghost Button</Button>
+                <Button variant="danger">Danger Button</Button>
+                <Button variant="success">Success Button</Button>
+              </div>
+            </div>
+
+            {/* Button Sizes */}
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">Sizes</h3>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button size="sm">Small</Button>
+                <Button size="md">Medium</Button>
+                <Button size="lg">Large</Button>
+                <Button size="xl">Extra Large</Button>
+              </div>
+            </div>
+
+            {/* Button with Icons */}
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">With Icons</h3>
+              <div className="flex flex-wrap gap-4">
+                <Button icon={<Plane className="h-4 w-4" />}>Search Flights</Button>
+                <Button variant="secondary" icon={<MapPin className="h-4 w-4" />}>Find Experiences</Button>
+                <Button variant="success" icon={<Check className="h-4 w-4" />}>Confirm Booking</Button>
+              </div>
+            </div>
+
+            {/* Loading State */}
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">Loading State</h3>
+              <div className="flex gap-4">
+                <Button isLoading>Loading...</Button>
+                <Button variant="secondary" isLoading>Processing...</Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Input Components */}
+        <section className="container mx-auto px-4 py-16 bg-gray-50">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Form Inputs</h2>
+          
+          <div className="max-w-2xl space-y-6">
+            <Input 
+              label="Email Address"
+              placeholder="john.doe@example.com"
+              hint="We'll never share your email"
             />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Desert Safari Adventure</h3>
-            <div className="flex items-center gap-2 mb-3">
-              <Star className="w-4 h-4 text-yellow-500 fill-current" />
-              <span className="text-sm font-semibold">4.9</span>
-              <span className="text-sm text-gray-600">(2,341 reviews)</span>
-            </div>
-            <p className="text-gray-600 text-sm mb-4">
-              4-hour desert experience perfect for Doha layovers
-            </p>
-            <div className="flex justify-between items-center">
-              <span className="text-2xl font-bold text-orange-600">$89</span>
-              <EnterpriseButton variant="experience" size="sm">
-                Book Now
-              </EnterpriseButton>
-            </div>
-          </EnterpriseCard>
+            
+            <Input 
+              label="Password"
+              type="password"
+              placeholder="Enter your password"
+              icon={<Shield className="h-5 w-5" />}
+            />
+            
+            <Input 
+              label="Success Input"
+              value="Valid input"
+              success
+              hint="Great! This looks good"
+            />
+            
+            <Input 
+              label="Error Input"
+              value="Invalid input"
+              error="Please enter a valid value"
+            />
 
-          <EnterpriseCard
-            variant="interactive"
-            className={selectedCard === 3 ? "ring-4 ring-orange-500" : ""}
-            onClick={() => setSelectedCard(3)}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold rounded-full">
-                LIMITED TIME
-              </span>
-              <TrendingUp className="w-5 h-5 text-green-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Save 30% on Layovers</h3>
-            <p className="text-gray-600 mb-4">
-              Book connecting flights with 6+ hour layovers and unlock exclusive city experiences
-            </p>
-            <ul className="space-y-2 mb-4">
-              <li className="flex items-center text-sm">
-                <Shield className="w-4 h-4 mr-2 text-green-600" />
-                Free cancellation
-              </li>
-              <li className="flex items-center text-sm">
-                <Zap className="w-4 h-4 mr-2 text-blue-600" />
-                Instant booking confirmation
-              </li>
-            </ul>
-            <EnterpriseButton variant="primary" size="md" className="w-full">
-              Explore Deals
-            </EnterpriseButton>
-          </EnterpriseCard>
-        </div>
-      </section>
+            <Select
+              label="Travel Class"
+              options={[
+                { value: 'economy', label: 'Economy' },
+                { value: 'premium', label: 'Premium Economy' },
+                { value: 'business', label: 'Business' },
+                { value: 'first', label: 'First Class' }
+              ]}
+              value={selectValue}
+              onChange={(e) => setSelectValue(e.target.value)}
+              hint="Select your preferred travel class"
+            />
+          </div>
+        </section>
 
-      {/* Input Showcase */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8 text-gray-900">Enterprise Inputs</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-          <EnterpriseInput
-            variant="default"
-            label="Where from?"
-            placeholder="New York (JFK)"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <EnterpriseInput
-            variant="search"
-            label="Where to?"
-            placeholder="Search airports..."
-            value=""
-            onChange={() => {}}
-          />
-          <EnterpriseInput
-            variant="date"
-            label="Departure"
-            type="date"
-            value=""
-            onChange={() => {}}
-          />
-          <EnterpriseInput
-            variant="default"
-            label="Travelers"
-            placeholder="2 Adults, 1 Child"
-            value=""
-            onChange={() => {}}
-          />
-          <EnterpriseInput
-            variant="success"
-            label="Promo Code"
-            placeholder="SAVE30"
-            value="LAYOVER2024"
-            onChange={() => {}}
-            helpText="Code applied successfully!"
-          />
-          <EnterpriseInput
-            variant="error"
-            label="Email"
-            type="email"
-            placeholder="your@email.com"
-            value="invalid-email"
-            onChange={() => {}}
-            error={true}
-            helpText="Please enter a valid email"
-          />
-        </div>
-      </section>
-
-      {/* Interactive Demo Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-blue-600 to-orange-600 rounded-3xl p-1">
-          <div className="bg-white rounded-3xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold mb-4 text-center">Try Our Smart Layover Search</h2>
-            <p className="text-center text-gray-600 mb-8">
-              Turn your connection into an adventure with our AI-powered recommendations
-            </p>
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <EnterpriseInput variant="search" placeholder="From" value="" onChange={() => {}} />
-                <EnterpriseInput variant="search" placeholder="To" value="" onChange={() => {}} />
-                <EnterpriseInput variant="date" type="date" value="" onChange={() => {}} />
-                <EnterpriseButton variant="airline" size="lg" className="h-full">
-                  Search
-                </EnterpriseButton>
+        {/* Badge Components */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Badges</h2>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">Variants</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Default</Badge>
+                <Badge variant="primary">Primary</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="success">Success</Badge>
+                <Badge variant="warning">Warning</Badge>
+                <Badge variant="error">Error</Badge>
+                <Badge variant="accent">Special Offer</Badge>
               </div>
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-                  6+ hour layovers
-                </span>
-                <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">
-                  City tours included
-                </span>
-                <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
-                  Save up to 40%
-                </span>
-                <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
-                  VIP lounge access
-                </span>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-4 text-gray-700">Sizes</h3>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge size="sm">Small</Badge>
+                <Badge size="md">Medium</Badge>
+                <Badge size="lg">Large</Badge>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Animation Showcase */}
-      <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-900">Morphic Interactions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="group cursor-pointer">
-            <div className="p-6 bg-white rounded-2xl shadow-lg transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-orange-50">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-orange-600 rounded-lg mb-4 transition-transform duration-700 group-hover:rotate-180" />
-              <h3 className="text-xl font-bold mb-2">Smooth Transitions</h3>
-              <p className="text-gray-600">Hover to see the magic</p>
+        {/* Card Components */}
+        <section className="container mx-auto px-4 py-16 bg-gray-50">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Cards</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Default Card</CardTitle>
+                <CardDescription>This is a basic card component</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">Card content goes here. You can add any content you want.</p>
+              </CardContent>
+              <CardFooter>
+                <Button size="sm">Action</Button>
+              </CardFooter>
+            </Card>
+
+            <Card variant="elevated">
+              <CardHeader>
+                <CardTitle>Elevated Card</CardTitle>
+                <CardDescription>Card with shadow elevation</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-2 mb-2">
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                  <span className="font-semibold">4.8</span>
+                  <span className="text-gray-500">(2,341 reviews)</span>
+                </div>
+                <p className="text-gray-600">Perfect for highlighting important content.</p>
+              </CardContent>
+            </Card>
+
+            <Card variant="interactive" onClick={() => alert('Card clicked!')}>
+              <CardHeader>
+                <CardTitle>Interactive Card</CardTitle>
+                <CardDescription>Click me!</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Badge variant="accent" className="mb-2">Special</Badge>
+                <p className="text-gray-600">This card has hover effects and is clickable.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Flight Card Component */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Flight Card</h2>
+          <div className="max-w-3xl mx-auto">
+            <FlightCard 
+              flight={sampleFlight}
+              onSelect={() => alert('Flight selected!')}
+            />
+          </div>
+        </section>
+
+        {/* Responsive Grid Examples */}
+        <section className="container mx-auto px-4 py-16 bg-gray-50">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Responsive Grid</h2>
+          <p className="text-gray-600 mb-6">Resize your browser to see responsive behavior</p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+              <Card key={i}>
+                <CardContent>
+                  <div className="text-center py-8">
+                    <div className="text-2xl font-bold text-primary-600 mb-2">{i}</div>
+                    <p className="text-sm text-gray-600">Responsive Grid Item</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Shadows & Elevation */}
+        <section className="container mx-auto px-4 py-16">
+          <h2 className="text-3xl font-semibold mb-8 text-gray-900">Shadows & Elevation</h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <p className="text-sm font-medium">shadow-sm</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow">
+              <p className="text-sm font-medium">shadow-default</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <p className="text-sm font-medium">shadow-md</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-lg">
+              <p className="text-sm font-medium">shadow-lg</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-xl">
+              <p className="text-sm font-medium">shadow-xl</p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-2xl">
+              <p className="text-sm font-medium">shadow-2xl</p>
             </div>
           </div>
-          <div className="group cursor-pointer">
-            <div className="p-6 bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl">
-              <div className="bg-white rounded-xl p-4 transition-transform duration-500 group-hover:scale-95">
-                <h3 className="text-xl font-bold mb-2">Inverted Effects</h3>
-                <p className="text-gray-600">Professional animations</p>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-2xl">
-            <div className="p-6 bg-white shadow-lg">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-orange-600 transform translate-y-full transition-transform duration-500 hover:translate-y-0" />
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-2">Slide Effects</h3>
-                <p className="text-gray-600">Engaging interactions</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }

@@ -358,11 +358,11 @@ export function UnifiedTravelBuddyDashboard({
                         gate: layover.flightInfo?.gate
                       },
                       arrival: {
-                        city: layover.flightInfo?.destination || "TBD",
+                        city: layover.flightInfo?.arrivalCity || currentLocation.city,
                         time: layover.flightInfo?.arrivalTime || "TBD",
                         gate: layover.flightInfo?.arrivalGate
                       },
-                      status: layover.flightInfo?.status || "on-time",
+                      status: (layover.flightInfo?.status as "on-time" | "delayed" | "boarding" | "departed") || "on-time",
                       delay: layover.flightInfo?.delay
                     }
                   },

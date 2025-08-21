@@ -116,9 +116,9 @@ export class AISearchEngine {
 
       // Step 3: Merge and deduplicate results
       const mergedResults = await this.mergeSearchResults([
-        ...viatorResults,
-        ...localResults,
-        ...aiGeneratedResults
+        viatorResults,
+        localResults,
+        aiGeneratedResults
       ])
 
       // Step 4: Apply AI-powered filtering and ranking
@@ -231,7 +231,26 @@ export class AISearchEngine {
         }
       }
 
-      const viatorResults = await viatorService.EnhancedViatorService.prototype.searchExperiences(searchRequest)
+      const viatorResults = await viatorService.enhancedViatorService.searchWeatherAwareExperiences(
+        query.location.city,
+        query.filters.duration?.max || 240,
+        query.location.airport || 'CDG', // Use airport from query or default
+        new Date().toISOString(), // Current time as arrival time
+        { // Mock weather data
+          temperature: 20,
+          feelsLike: 18,
+          condition: 'clear',
+          description: 'Clear sky',
+          humidity: 65,
+          windSpeed: 10,
+          visibility: 10,
+          cloudiness: 0,
+          precipitation: 0,
+          icon: 'clear-day',
+          isGoodForOutdoor: true,
+          recommendations: ['Perfect weather for outdoor activities']
+        }
+      )
       
       return viatorResults.map(result => this.transformViatorResult(result, query))
     } catch (error) {

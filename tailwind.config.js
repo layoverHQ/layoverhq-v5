@@ -1,77 +1,48 @@
 /** @type {import('tailwindcss').Config} */
+const { designTokens } = require('./lib/design-system/tokens')
+
 module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./lib/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: "class",
   theme: {
     extend: {
       colors: {
-        // Sophisticated paper-inspired monochrome (Apple aesthetic)
-        paper: {
-          50: "#fcfcfc",   // Pure, clean white
-          100: "#f8f9fa",  // Softest gray
-          200: "#f1f3f4",  // Light background
-          300: "#e8eaed",  // Subtle border
-          400: "#dadce0",  // Muted dividers
-          500: "#9aa0a6",  // Neutral text
-          600: "#5f6368",  // Secondary text
-          700: "#3c4043",  // Primary text
-          800: "#202124",  // Dark text
-          900: "#1a1a1a",  // Deepest black
-          950: "#000000",  // Pure black
-        },
-        // Elegant primary accent (sophisticated blue)
-        primary: {
-          50: "#f0f4ff",   // Lightest blue tint
-          100: "#e0e7ff",  // Very light blue
-          200: "#c7d2fe",  // Light blue
-          300: "#a5b4fc",  // Soft blue
-          400: "#818cf8",  // Medium blue
-          500: "#4c6ef5",  // Sophisticated blue (main)
-          600: "#4263eb",  // Deeper blue
-          700: "#3b50df",  // Rich blue
-          800: "#2e3db3",  // Dark blue
-          900: "#1e2875",  // Very dark blue
-          950: "#151b4d",  // Deepest blue
-        },
-        // Warm accent (elegant coral/peach)
-        accent: {
-          50: "#fef7f0",   // Lightest warm tint
-          100: "#feeee0",  // Very light warm
-          200: "#fdd9c0",  // Light warm
-          300: "#fcb896",  // Soft warm
-          400: "#fa8c69",  // Medium warm
-          500: "#f97316",  // Vibrant warm (main)
-          600: "#ea5a0c",  // Deeper warm
-          700: "#c2410c",  // Rich warm
-          800: "#9a3412",  // Dark warm
-          900: "#7c2d12",  // Very dark warm
-          950: "#431407",  // Deepest warm
-        },
-        // Success/positive accent
-        success: {
-          50: "#f0fdf4",   // Lightest green
-          100: "#dcfce7",  // Very light green
-          200: "#bbf7d0",  // Light green
-          300: "#86efac",  // Soft green
-          400: "#4ade80",  // Medium green
-          500: "#22c55e",  // Success green (main)
-          600: "#16a34a",  // Deeper green
-          700: "#15803d",  // Rich green
-          800: "#166534",  // Dark green
-          900: "#14532d",  // Very dark green
-          950: "#052e16",  // Deepest green
-        },
-        // Success/action colors
-        success: {
-          500: "#10b981",
-          600: "#059669",
-        },
+        // Google Flights & Priceline inspired colors
+        primary: designTokens.colors.primary,
+        accent: designTokens.colors.accent,
+        success: designTokens.colors.success,
+        warning: designTokens.colors.warning,
+        error: designTokens.colors.error,
+        gray: designTokens.colors.gray,
+        background: designTokens.colors.background,
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        display: ["Playfair Display", "Georgia", "serif"],
-        mono: ["Space Grotesk", "Menlo", "Monaco", "monospace"],
+        sans: designTokens.typography.fonts.sans.split(',').map(f => f.trim()),
+        display: designTokens.typography.fonts.display.split(',').map(f => f.trim()),
+        mono: designTokens.typography.fonts.mono.split(',').map(f => f.trim()),
       },
+      fontSize: Object.entries(designTokens.typography.sizes).reduce((acc, [key, value]) => {
+        acc[key] = [value.size, { lineHeight: value.lineHeight }]
+        return acc
+      }, {}),
+      fontWeight: designTokens.typography.weights,
+      spacing: designTokens.spacing,
+      borderRadius: designTokens.borderRadius,
+      boxShadow: {
+        ...designTokens.shadows,
+        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+        "glass-sm": "0 4px 16px 0 rgba(31, 38, 135, 0.25)",
+        "travel": "0 10px 40px rgba(0, 0, 0, 0.1)",
+        "travel-lg": "0 20px 60px rgba(0, 0, 0, 0.15)",
+      },
+      screens: designTokens.breakpoints,
+      zIndex: designTokens.zIndex,
+      transitionDuration: {
+        fast: designTokens.transitions.fast,
+        default: designTokens.transitions.default,
+        slow: designTokens.transitions.slow,
+      },
+      transitionTimingFunction: designTokens.transitions.easing,
       animation: {
         "float": "float 6s ease-in-out infinite",
         "float-delayed": "float 6s ease-in-out 2s infinite",
