@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install --prefer-offline --no-audit --no-fund --loglevel error",
+  "installCommand": "npm install --no-audit --no-fund --loglevel error",
   "env": {
     "NEXTJS_IGNORE_ESLINT": "1",
     "SKIP_BUILD_STATIC_GENERATION": "1",
