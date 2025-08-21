@@ -384,7 +384,7 @@ export class ItineraryManager {
   }
 
   private generateICalFormat(itinerary: Itinerary): string {
-    let ical = [
+    const ical = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'PRODID:-//LayoverHQ//Itinerary//EN',

@@ -405,88 +405,139 @@ export default function PremiumLandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-16">
             {/* American Airlines - DFW */}
-            <div className="group bg-gradient-to-br from-red-50/50 to-white rounded-3xl p-8 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 border border-red-100/60">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-red-500 rounded-2xl flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">AA</span>
+            <div className="group bg-gradient-to-br from-red-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-red-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">AA</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-paper-800">American Airlines</div>
-                  <div className="text-sm text-paper-500">Dallas (DFW)</div>
+                  <div className="font-medium text-paper-800 text-sm">American</div>
+                  <div className="text-xs text-paper-500">Dallas DFW</div>
                 </div>
               </div>
-              <h3 className="text-xl font-display font-light text-paper-800 mb-4">Texas BBQ & Culture</h3>
-              <p className="text-paper-600 leading-relaxed font-light mb-6">
-                Authentic Texas BBQ experiences and cowboy culture tours during your DFW layover.
-              </p>
-              <div className="flex items-center text-sm text-accent-600">
-                <Clock className="h-4 w-4 mr-2" />
-                <span>6-12 hour layovers</span>
+              <h3 className="font-display font-medium text-paper-800 mb-2">Texas BBQ</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>6-12h layovers</span>
               </div>
+              <div className="text-xs text-paper-600">Authentic BBQ & cowboy culture</div>
             </div>
 
             {/* Delta - ATL */}
-            <div className="group bg-gradient-to-br from-blue-50/50 to-white rounded-3xl p-8 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 border border-blue-100/60">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">DL</span>
+            <div className="group bg-gradient-to-br from-blue-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-blue-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">DL</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-paper-800">Delta Airlines</div>
-                  <div className="text-sm text-paper-500">Atlanta (ATL)</div>
+                  <div className="font-medium text-paper-800 text-sm">Delta</div>
+                  <div className="text-xs text-paper-500">Atlanta ATL</div>
                 </div>
               </div>
-              <h3 className="text-xl font-display font-light text-paper-800 mb-4">Southern Hospitality</h3>
-              <p className="text-paper-600 leading-relaxed font-light mb-6">
-                Civil rights history tours and authentic Southern cuisine in America's busiest airport.
-              </p>
-              <div className="flex items-center text-sm text-accent-600">
-                <Clock className="h-4 w-4 mr-2" />
-                <span>4-10 hour layovers</span>
+              <h3 className="font-display font-medium text-paper-800 mb-2">Southern Culture</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>4-10h layovers</span>
               </div>
+              <div className="text-xs text-paper-600">Civil rights tours & cuisine</div>
             </div>
 
             {/* United - ORD */}
-            <div className="group bg-gradient-to-br from-indigo-50/50 to-white rounded-3xl p-8 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 border border-indigo-100/60">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center mr-4">
-                  <span className="text-white font-bold text-lg">UA</span>
+            <div className="group bg-gradient-to-br from-indigo-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-indigo-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">UA</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-paper-800">United Airlines</div>
-                  <div className="text-sm text-paper-500">Chicago (ORD)</div>
+                  <div className="font-medium text-paper-800 text-sm">United</div>
+                  <div className="text-xs text-paper-500">Chicago ORD</div>
                 </div>
               </div>
-              <h3 className="text-xl font-display font-light text-paper-800 mb-4">Deep Dish & Architecture</h3>
-              <p className="text-paper-600 leading-relaxed font-light mb-6">
-                Chicago deep-dish pizza tours and world-renowned architectural experiences.
-              </p>
-              <div className="flex items-center text-sm text-accent-600">
-                <Clock className="h-4 w-4 mr-2" />
-                <span>5-14 hour layovers</span>
+              <h3 className="font-display font-medium text-paper-800 mb-2">Deep Dish</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>5-14h layovers</span>
               </div>
+              <div className="text-xs text-paper-600">Pizza tours & architecture</div>
+            </div>
+
+            {/* Southwest - LAS */}
+            <div className="group bg-gradient-to-br from-orange-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-orange-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">WN</span>
+                </div>
+                <div>
+                  <div className="font-medium text-paper-800 text-sm">Southwest</div>
+                  <div className="text-xs text-paper-500">Las Vegas LAS</div>
+                </div>
+              </div>
+              <h3 className="font-display font-medium text-paper-800 mb-2">Vegas Lights</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>4-8h layovers</span>
+              </div>
+              <div className="text-xs text-paper-600">Strip tours & shows</div>
+            </div>
+
+            {/* JetBlue - JFK */}
+            <div className="group bg-gradient-to-br from-cyan-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-cyan-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">B6</span>
+                </div>
+                <div>
+                  <div className="font-medium text-paper-800 text-sm">JetBlue</div>
+                  <div className="text-xs text-paper-500">New York JFK</div>
+                </div>
+              </div>
+              <h3 className="font-display font-medium text-paper-800 mb-2">NYC Icons</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>6-12h layovers</span>
+              </div>
+              <div className="text-xs text-paper-600">Manhattan tours & Broadway</div>
+            </div>
+
+            {/* Alaska Airlines - SEA */}
+            <div className="group bg-gradient-to-br from-emerald-50/40 to-white rounded-2xl p-6 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 border border-emerald-100/40">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center mr-3">
+                  <span className="text-white font-bold text-sm">AS</span>
+                </div>
+                <div>
+                  <div className="font-medium text-paper-800 text-sm">Alaska</div>
+                  <div className="text-xs text-paper-500">Seattle SEA</div>
+                </div>
+              </div>
+              <h3 className="font-display font-medium text-paper-800 mb-2">Pacific NW</h3>
+              <div className="flex items-center text-xs text-accent-600 mb-3">
+                <Clock className="h-3 w-3 mr-1" />
+                <span>5-10h layovers</span>
+              </div>
+              <div className="text-xs text-paper-600">Coffee culture & waterfront</div>
             </div>
           </div>
 
           {/* Hub Stats */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-16 border-t border-paper-200">
-            <div className="text-center group">
-              <div className="text-fluid-4xl font-display font-light text-paper-800 mb-2">25+</div>
-              <div className="text-paper-600 font-medium">Airport Hubs</div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 py-12 border-t border-paper-200">
+            <div className="text-center bg-paper-50/50 rounded-xl p-4">
+              <div className="text-2xl font-display font-medium text-paper-800 mb-1">35+</div>
+              <div className="text-sm text-paper-600">Airport Hubs</div>
             </div>
-            <div className="text-center group">
-              <div className="text-fluid-4xl font-display font-light text-paper-800 mb-2">4</div>
-              <div className="text-paper-600 font-medium">Major Airlines</div>
+            <div className="text-center bg-paper-50/50 rounded-xl p-4">
+              <div className="text-2xl font-display font-medium text-paper-800 mb-1">6</div>
+              <div className="text-sm text-paper-600">Major Airlines</div>
             </div>
-            <div className="text-center group">
-              <div className="text-fluid-4xl font-display font-light text-paper-800 mb-2">$350</div>
-              <div className="text-paper-600 font-medium">Avg Savings</div>
+            <div className="text-center bg-paper-50/50 rounded-xl p-4">
+              <div className="text-2xl font-display font-medium text-paper-800 mb-1">$420</div>
+              <div className="text-sm text-paper-600">Avg Savings</div>
             </div>
-            <div className="text-center group">
-              <div className="text-fluid-4xl font-display font-light text-paper-800 mb-2">6-16h</div>
-              <div className="text-paper-600 font-medium">Layover Range</div>
+            <div className="text-center bg-paper-50/50 rounded-xl p-4">
+              <div className="text-2xl font-display font-medium text-paper-800 mb-1">4-16h</div>
+              <div className="text-sm text-paper-600">Layover Range</div>
             </div>
           </div>
         </div>
