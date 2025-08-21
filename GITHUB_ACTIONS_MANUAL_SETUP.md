@@ -1,0 +1,249 @@
+# 🚀 GitHub Actions Manual Setup Guide
+
+## ⚠️ Important Note
+Due to OAuth token restrictions, the GitHub Actions workflow files need to be added manually through the GitHub web interface.
+
+## 📋 Quick Setup Steps
+
+### 1. Navigate to Your Repository
+Go to: https://github.com/layoverHQ/layoverhq-v5
+
+### 2. Create the Main CI/CD Workflow
+
+1. Click on the **"Actions"** tab
+2. Click **"New workflow"**
+3. Click **"set up a workflow yourself"**
+4. Name the file: `ci-cd.yml`
+5. Copy and paste this content:
+
+```yaml
+name: 🚀 LayoverHQ CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-checks:
+    name: 🔍 Code Quality & Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 📦 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: 📚 Install dependencies
+      run: npm ci
+
+    - name: 🧹 Run ESLint
+      run: npm run lint
+
+    - name: 🎨 Check Prettier formatting
+      run: npm run format:check
+
+    - name: 🔧 TypeScript compilation check
+      run: npm run type-check
+
+    - name: 🏗️ Build project
+      run: npm run build
+
+    - name: 🧪 Run tests (when available)
+      run: npm test
+      continue-on-error: true
+
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    needs: quality-checks
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔍 Run CodeQL Analysis
+      uses: github/codeql-action/init@v3
+      with:
+        languages: javascript
+
+    - name: 🏗️ Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    - name: 📊 Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+
+  deploy-preview:
+    name: 🌟 Deploy Preview (PRs)
+    runs-on: ubuntu-latest
+    needs: [quality-checks]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🚀 Deploy to Vercel Preview
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        scope: ${{ secrets.VERCEL_ORG_ID }}
+
+  deploy-production:
+    name: 🎯 Deploy Production
+    runs-on: ubuntu-latest
+    needs: [quality-checks, security-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🚀 Deploy to Vercel Production
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'
+        scope: ${{ secrets.VERCEL_ORG_ID }}
+
+  lighthouse-audit:
+    name: 🏃‍♂️ Performance Audit
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🌊 Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v10
+      with:
+        configPath: '.lighthouserc.json'
+        uploadArtifacts: true
+        temporaryPublicStorage: true
+
+  notify-success:
+    name: 📢 Deployment Success
+    runs-on: ubuntu-latest
+    needs: [deploy-production, lighthouse-audit]
+    if: success() && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: ✅ Notify Deployment Success
+      run: |
+        echo "🎉 LayoverHQ successfully deployed to production!"
+        echo "✨ All quality checks passed"
+        echo "🚀 Performance audit completed"
+```
+
+6. Click **"Commit changes"**
+
+### 3. Create the Test Pipeline Workflow
+
+1. From the Actions tab, click **"New workflow"** again
+2. Click **"set up a workflow yourself"**
+3. Name the file: `test-pipeline.yml`
+4. Copy the content from `.github/workflows/test-pipeline.yml` (already in your local repository)
+5. Click **"Commit changes"**
+
+### 4. Add Repository Secrets
+
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Click **"New repository secret"** for each:
+
+#### Required Secrets:
+- **VERCEL_TOKEN**: Get from https://vercel.com/account/tokens
+- **VERCEL_ORG_ID**: Get from Vercel team settings
+- **VERCEL_PROJECT_ID**: Get from Vercel project settings
+
+### 5. Run the Setup Scripts
+
+```bash
+# Make scripts executable (if not already)
+chmod +x scripts/*.sh
+
+# Run GitHub Actions setup
+./scripts/setup-github-actions.sh
+
+# Update Lighthouse configuration
+./scripts/update-lighthouse-config.sh
+
+# Set up branch protection
+./scripts/setup-branch-protection.sh
+```
+
+### 6. Test Your Pipeline
+
+Create a test PR to verify everything works:
+
+```bash
+# Create test branch
+git checkout -b test/ci-pipeline
+
+# Make a small change
+echo "// CI Test" >> lib/test.ts
+
+# Commit and push
+git add lib/test.ts
+git commit -m "test: Verify CI pipeline"
+git push origin test/ci-pipeline
+
+# Create PR
+gh pr create --title "Test CI Pipeline" --body "Testing GitHub Actions setup"
+```
+
+## 🎯 Expected Results
+
+### On Pull Request:
+- ✅ Code quality checks (ESLint, Prettier, TypeScript)
+- ✅ Security scanning with CodeQL
+- ✅ Preview deployment to Vercel
+- ✅ Comment with preview URL
+
+### On Main Branch Push:
+- ✅ All quality and security checks
+- ✅ Production deployment to Vercel
+- ✅ Lighthouse performance audit
+- ✅ Success notification
+
+## 🔧 Troubleshooting
+
+### Issue: "Workflow not found"
+**Solution**: Make sure you committed the workflow files through GitHub's web interface
+
+### Issue: "Vercel deployment failed"
+**Solution**: Check that all three Vercel secrets are set correctly in repository settings
+
+### Issue: "ESLint errors blocking deployment"
+**Solution**: Run `npm run lint:fix` locally and push the fixes
+
+## 📚 Additional Resources
+
+- [Full integration guide](./docs/VERCEL_GITHUB_INTEGRATION.md)
+- [GitHub Actions documentation](https://docs.github.com/en/actions)
+- [Vercel deployment docs](https://vercel.com/docs)
+
+## ✅ Verification Checklist
+
+- [ ] Workflow files created via GitHub web interface
+- [ ] Vercel secrets added to repository
+- [ ] Test PR created and passing
+- [ ] Production deployment successful
+- [ ] Lighthouse reports generating
+
+---
+
+**Need help?** Check the [integration guide](./docs/VERCEL_GITHUB_INTEGRATION.md) or open an issue.
