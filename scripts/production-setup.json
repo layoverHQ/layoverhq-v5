@@ -1,0 +1,57 @@
+{
+  "name": "LayoverHQ Production Setup",
+  "description": "Production deployment checklist and configuration",
+  "version": "1.0.0",
+  "checklist": {
+    "infrastructure": [
+      "Set up Kubernetes cluster or container orchestration",
+      "Configure load balancer and SSL certificates",
+      "Set up CDN for static assets",
+      "Configure DNS and domain routing"
+    ],
+    "database": [
+      "Set up production Supabase instance",
+      "Configure automated backups",
+      "Set up read replicas if needed",
+      "Configure connection pooling"
+    ],
+    "monitoring": [
+      "Set up external uptime monitoring",
+      "Configure log aggregation",
+      "Set up error tracking (Sentry)",
+      "Configure performance monitoring"
+    ],
+    "security": [
+      "Configure environment variables",
+      "Set up secrets management",
+      "Configure rate limiting",
+      "Set up security headers"
+    ],
+    "deployment": [
+      "Set up CI/CD pipeline",
+      "Configure staging environment",
+      "Set up blue-green deployment",
+      "Configure rollback procedures"
+    ]
+  },
+  "environments": {
+    "staging": {
+      "url": "https://staging.layoverhq.com",
+      "database": "staging_database",
+      "replicas": 1
+    },
+    "production": {
+      "url": "https://layoverhq.com",
+      "database": "production_database",
+      "replicas": 3
+    }
+  },
+  "monitoring_endpoints": [
+    "https://layoverhq.com/api/v1/health",
+    "https://layoverhq.com/api/admin/system/health"
+  ],
+  "backup_schedule": {
+    "database": "daily at 2:00 AM UTC",
+    "files": "weekly on Sunday at 3:00 AM UTC"
+  }
+}

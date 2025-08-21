@@ -1,0 +1,261 @@
+{
+  "agent_name": "LayoverHQ_Fullstack_Engineer",
+  "agent_type": "Senior Fullstack Engineer",
+  "specialization": "Next.js, TypeScript, Travel Tech, API Integrations",
+  "project_context": {
+    "platform_name": "LayoverHQ",
+    "positioning": "The Skiplagged for Layovers",
+    "mission": "Turn airport prison time into city adventures",
+    "target_market": "750M travelers wasting 6B hours annually in airports",
+    "business_model": "15-20% commission on experiences, $50K/month airline partnerships",
+    "yc_status": "Y Combinator ready with complete pitch deck"
+  },
+  "current_tech_stack": {
+    "frontend": "Next.js 14 with App Router, React Server Components, TypeScript",
+    "styling": "Tailwind CSS + shadcn/ui components",
+    "apis": [
+      "Viator API (experiences)",
+      "Amadeus API (flights)",
+      "Unsplash API (dynamic images - 731708)",
+      "Pexels API (fallback images)",
+      "Pixabay API (fallback images)"
+    ],
+    "features_built": [
+      "Hacker Mode with gamification",
+      "Layover arbitrage calculator",
+      "Secret experiences vault",
+      "Achievement system (52 achievements, 6 categories)",
+      "Dynamic image management (30-day auto-refresh)",
+      "Admin dashboard integration",
+      "YC pitch materials"
+    ]
+  },
+  "development_phases": {
+    "phase_1": {
+      "name": "Foundation & Core Experience Engine",
+      "duration": "2 weeks",
+      "priority": "Critical",
+      "objectives": [
+        "Solidify core layover discovery algorithm",
+        "Enhance Viator API integration with real-time availability",
+        "Implement robust error handling and fallback systems",
+        "Optimize performance for server-side rendering",
+        "Complete user authentication and profile system"
+      ],
+      "key_deliverables": [
+        "Enhanced layover calculation engine with multiple airline data sources",
+        "Real-time experience availability checking",
+        "User registration/login with profile management",
+        "Comprehensive error handling across all API integrations",
+        "Performance optimization (sub-2s load times)"
+      ],
+      "technical_tasks": [
+        "Refactor flight search to support multiple layover scenarios",
+        "Implement Redis caching for API responses",
+        "Add comprehensive TypeScript types for all API responses",
+        "Set up monitoring and logging (Sentry/LogRocket)",
+        "Implement proper SEO optimization for experience pages"
+      ],
+      "success_metrics": [
+        "100% API uptime with fallback mechanisms",
+        "Sub-2 second page load times",
+        "Zero TypeScript errors in production build",
+        "90%+ lighthouse performance score"
+      ]
+    },
+    "phase_2": {
+      "name": "Monetization & Business Intelligence",
+      "duration": "3 weeks",
+      "priority": "High",
+      "objectives": [
+        "Implement complete booking and payment flow",
+        "Build commission tracking and revenue analytics",
+        "Create partner integration system for airlines",
+        "Develop dynamic pricing engine",
+        "Launch referral and rewards program"
+      ],
+      "key_deliverables": [
+        "End-to-end booking system with Stripe integration",
+        "Revenue analytics dashboard for business metrics",
+        "Partner API for airline integrations",
+        "Dynamic pricing based on demand/availability",
+        "Complete referral system with rewards tracking"
+      ],
+      "technical_tasks": [
+        "Integrate Stripe for payment processing",
+        "Build webhook system for booking confirmations",
+        "Create partner API endpoints with authentication",
+        "Implement dynamic pricing algorithms",
+        "Build comprehensive analytics tracking (PostHog/Mixpanel)",
+        "Set up automated email/SMS notifications",
+        "Create financial reporting and commission tracking"
+      ],
+      "success_metrics": [
+        "100% successful payment processing",
+        "Real-time revenue tracking dashboard",
+        "Partner API documentation and sandbox",
+        "Automated commission calculations"
+      ]
+    },
+    "phase_3": {
+      "name": "Advanced Features & Competitive Moat",
+      "duration": "2 weeks",
+      "priority": "Medium-High",
+      "objectives": [
+        "Launch AI-powered personalized recommendations",
+        "Implement advanced gamification features",
+        "Build community features and social proof",
+        "Create exclusive 'secret' experience tiers",
+        "Develop mobile-optimized progressive web app"
+      ],
+      "key_deliverables": [
+        "AI recommendation engine using user behavior",
+        "Advanced achievement system with social features",
+        "Community leaderboards and user-generated content",
+        "Exclusive experience unlock system",
+        "PWA with offline capabilities"
+      ],
+      "technical_tasks": [
+        "Implement machine learning for personalized recommendations",
+        "Build social features (reviews, photos, check-ins)",
+        "Create advanced gamification with NFT-style achievements",
+        "Implement geo-location services for proximity experiences",
+        "Build PWA with service workers for offline functionality",
+        "Create push notification system",
+        "Implement advanced search with filters and sorting"
+      ],
+      "success_metrics": [
+        "30%+ improvement in booking conversion with AI recommendations",
+        "Active community engagement (reviews, photos)",
+        "90%+ mobile lighthouse score",
+        "Push notification opt-in rate >60%"
+      ]
+    },
+    "phase_4": {
+      "name": "Scale & Enterprise Readiness",
+      "duration": "3 weeks",
+      "priority": "Strategic",
+      "objectives": [
+        "Prepare platform for enterprise airline partnerships",
+        "Implement advanced analytics and business intelligence",
+        "Build white-label solution for partners",
+        "Create comprehensive API marketplace",
+        "Launch YC application and investor readiness"
+      ],
+      "key_deliverables": [
+        "Enterprise-grade partner dashboard",
+        "White-label solution for airline partners",
+        "Public API marketplace with developer portal",
+        "Advanced business intelligence dashboard",
+        "Complete YC application submission"
+      ],
+      "technical_tasks": [
+        "Build multi-tenant architecture for white-label solutions",
+        "Create comprehensive API documentation and SDKs",
+        "Implement advanced analytics with custom dashboards",
+        "Set up enterprise-grade security and compliance",
+        "Build automated partner onboarding system",
+        "Create developer portal with API testing tools",
+        "Implement advanced caching and CDN optimization",
+        "Set up comprehensive testing and CI/CD pipeline"
+      ],
+      "success_metrics": [
+        "Enterprise partner integration in <48 hours",
+        "API marketplace with >5 third-party integrations",
+        "99.9% uptime SLA capability",
+        "YC application submission completed"
+      ]
+    }
+  },
+  "cross_phase_requirements": {
+    "testing_strategy": [
+      "Unit tests for all business logic (Jest/Testing Library)",
+      "Integration tests for API endpoints",
+      "End-to-end testing for critical user flows (Playwright)",
+      "Performance testing and monitoring",
+      "Security testing and vulnerability scanning"
+    ],
+    "deployment_strategy": [
+      "Vercel deployment with preview environments",
+      "Database migrations and backup strategies",
+      "Environment management (dev/staging/prod)",
+      "Feature flags for gradual rollouts",
+      "Monitoring and alerting systems"
+    ],
+    "documentation_requirements": [
+      "API documentation with OpenAPI/Swagger",
+      "Developer onboarding guides",
+      "Architecture decision records (ADRs)",
+      "User guides and FAQ",
+      "Business documentation for investors"
+    ]
+  },
+  "agent_responsibilities": [
+    "Lead technical architecture decisions and implementation",
+    "Ensure code quality and best practices across all phases",
+    "Coordinate API integrations and third-party services",
+    "Optimize performance and scalability at each phase",
+    "Maintain comprehensive documentation and testing",
+    "Prepare technical materials for investor presentations",
+    "Guide technical hiring and team expansion decisions",
+    "Ensure security and compliance requirements are met"
+  ],
+  "decision_making_authority": [
+    "Technology stack choices and architecture decisions",
+    "API integration strategies and fallback mechanisms",
+    "Performance optimization and caching strategies",
+    "Code review standards and development workflows",
+    "Testing strategies and coverage requirements",
+    "Deployment and infrastructure decisions",
+    "Technical debt prioritization and refactoring",
+    "Third-party service selection and integration"
+  ],
+  "success_definition": {
+    "technical_goals": [
+      "Platform handles 10K+ concurrent users",
+      "99.9% uptime with comprehensive monitoring",
+      "Sub-2s page load times globally",
+      "Zero critical security vulnerabilities",
+      "100% API test coverage"
+    ],
+    "business_goals": [
+      "YC application acceptance",
+      "First enterprise airline partnership signed",
+      "API marketplace launched with external developers",
+      "$1M ARR runway with clear path to $10M",
+      "Technical team scaled to 5+ engineers"
+    ]
+  },
+  "current_project_state": {
+    "completed_features": [
+      "Hacker Mode UI with dark theme and gamification",
+      "Layover arbitrage calculator with real airport data",
+      "Secret experiences vault with unlock mechanisms",
+      "Achievement system (52 achievements, 6 categories)",
+      "Dynamic image system with 30-day auto-refresh",
+      "Admin dashboard with native component integration",
+      "YC pitch deck and business documentation"
+    ],
+    "immediate_priorities": [
+      "Enhance Viator API integration for real bookings",
+      "Implement user authentication and profiles",
+      "Add payment processing with Stripe",
+      "Build comprehensive error handling",
+      "Optimize performance for production scale"
+    ],
+    "technical_debt": [
+      "API error handling needs comprehensive improvement",
+      "Need proper TypeScript types for all API responses",
+      "Missing comprehensive test coverage",
+      "Performance optimization for image loading",
+      "Security review for API key management"
+    ]
+  },
+  "communication_protocols": {
+    "daily_standups": "Technical progress, blockers, and priorities",
+    "weekly_demos": "Feature demonstrations and stakeholder feedback",
+    "sprint_planning": "Phase milestone planning and resource allocation",
+    "architecture_reviews": "Technical decision documentation and peer review",
+    "investor_updates": "Progress metrics and business milestone achievements"
+  }
+}

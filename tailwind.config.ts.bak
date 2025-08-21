@@ -1,0 +1,206 @@
+import type { Config } from "tailwindcss"
+import { designTokens } from "./design-system/foundation/design-tokens"
+
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./hooks/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./design-system/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  darkMode: ["class"],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      // Colors from our design system
+      colors: {
+        // CSS variables for theming support
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          ...designTokens.colors.primary,
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+          ...designTokens.colors.secondary,
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+
+        // Design system semantic colors
+        success: designTokens.colors.success,
+        warning: designTokens.colors.warning,
+        error: designTokens.colors.error,
+        neutral: designTokens.colors.neutral,
+        travel: designTokens.colors.travel,
+        interactive: designTokens.colors.interactive,
+
+        // Legacy support for existing components
+        "qr-burgundy": "#662046",
+      },
+
+      // Typography
+      fontFamily: {
+        sans: designTokens.typography.fonts.body,
+        heading: designTokens.typography.fonts.heading,
+        mono: designTokens.typography.fonts.mono,
+      },
+      fontSize: designTokens.typography.fontSize,
+      fontWeight: designTokens.typography.fontWeight,
+      lineHeight: designTokens.typography.lineHeight,
+      letterSpacing: designTokens.typography.letterSpacing,
+
+      // Spacing
+      spacing: designTokens.spacing,
+
+      // Border radius
+      borderRadius: {
+        ...designTokens.borderRadius,
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+
+      // Box shadows
+      boxShadow: designTokens.shadows,
+
+      // Z-index
+      zIndex: designTokens.zIndex,
+
+      // Animations
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-out": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "fade-out": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        "scale-in": {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "scale-out": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(0.9)", opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "slide-in": "slide-in 0.3s ease-out",
+        "slide-out": "slide-out 0.3s ease-in",
+        "fade-in": "fade-in 0.2s ease-out",
+        "fade-out": "fade-out 0.2s ease-in",
+        "scale-in": "scale-in 0.2s ease-out",
+        "scale-out": "scale-out 0.2s ease-in",
+      },
+
+      // Screens (breakpoints)
+      screens: {
+        xs: "475px",
+        ...designTokens.breakpoints,
+      },
+
+      // Typography scale
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "none",
+            color: theme("colors.neutral.600"),
+            fontSize: theme("fontSize.base"),
+            lineHeight: theme("lineHeight.relaxed"),
+            fontFamily: theme("fontFamily.body").join(", "),
+
+            h1: {
+              color: theme("colors.neutral.800"),
+              fontSize: theme("fontSize.4xl"),
+              fontWeight: theme("fontWeight.bold"),
+              lineHeight: theme("lineHeight.tight"),
+              fontFamily: theme("fontFamily.heading").join(", "),
+            },
+            h2: {
+              color: theme("colors.neutral.800"),
+              fontSize: theme("fontSize.3xl"),
+              fontWeight: theme("fontWeight.semibold"),
+              lineHeight: theme("lineHeight.tight"),
+              fontFamily: theme("fontFamily.heading").join(", "),
+            },
+            h3: {
+              color: theme("colors.neutral.700"),
+              fontSize: theme("fontSize.2xl"),
+              fontWeight: theme("fontWeight.semibold"),
+              lineHeight: theme("lineHeight.snug"),
+              fontFamily: theme("fontFamily.heading").join(", "),
+            },
+
+            strong: {
+              color: theme("colors.neutral.800"),
+              fontWeight: theme("fontWeight.semibold"),
+            },
+
+            a: {
+              color: theme("colors.primary.600"),
+              textDecoration: "underline",
+              fontWeight: theme("fontWeight.medium"),
+              "&:hover": {
+                color: theme("colors.primary.700"),
+              },
+            },
+          },
+        },
+      }),
+    },
+  },
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+}
+
+export default config

@@ -1,0 +1,133 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: layoverhq-app
+  namespace: production
+  labels:
+    app: layoverhq
+    environment: production
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: layoverhq
+      environment: production
+  template:
+    metadata:
+      labels:
+        app: layoverhq
+        environment: production
+    spec:
+      containers:
+      - name: layoverhq
+        image: ghcr.io/layoverhq/layoverhq:main-latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: NEXT_PUBLIC_SUPABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: layoverhq-secrets
+              key: supabase-url
+        - name: NEXT_PUBLIC_SUPABASE_ANON_KEY
+          valueFrom:
+            secretKeyRef:
+              name: layoverhq-secrets
+              key: supabase-anon-key
+        - name: SUPABASE_SERVICE_ROLE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: layoverhq-secrets
+              key: supabase-service-role-key
+        - name: UPSTASH_REDIS_REST_URL
+          valueFrom:
+            secretKeyRef:
+              name: layoverhq-secrets
+              key: redis-url
+        - name: UPSTASH_REDIS_REST_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: layoverhq-secrets
+              key: redis-token
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/v1/health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/v1/health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: layoverhq-service
+  namespace: production
+spec:
+  selector:
+    app: layoverhq
+    environment: production
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: layoverhq-ingress
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - layoverhq.com
+    - www.layoverhq.com
+    secretName: layoverhq-tls
+  rules:
+  - host: layoverhq.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: layoverhq-service
+            port:
+              number: 80
+  - host: www.layoverhq.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: layoverhq-service
+            port:
+              number: 80

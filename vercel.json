@@ -1,0 +1,8 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "env": {
+    "NEXTJS_IGNORE_ESLINT": "1",
+    "SKIP_BUILD_STATIC_GENERATION": "1"
+  }
+}
