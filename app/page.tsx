@@ -38,44 +38,160 @@ export default function TravelOTALandingPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const destinations = [
-    {
-      city: "New York",
-      country: "United States",
-      image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80",
-      price: "from $879",
-      layover: "8h 45m",
-      rating: 4.8,
-      reviews: 1240,
-    },
-    {
-      city: "Chicago", 
-      country: "United States",
-      image: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=600&q=80",
-      price: "from $649",
-      layover: "12h 15m", 
-      rating: 4.9,
-      reviews: 890,
-    },
-    {
-      city: "Dallas",
-      country: "United States", 
-      image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80",
-      price: "from $599",
-      layover: "9h 30m",
-      rating: 4.7,
-      reviews: 650,
-    },
-    {
-      city: "Los Angeles",
-      country: "United States",
-      image: "https://images.unsplash.com/photo-1515756500008-6b1a8fb77c8e?w=600&q=80", 
-      price: "from $729",
-      layover: "6h 20m",
-      rating: 4.6,
-      reviews: 1100,
-    },
-  ];
+  const destinationsByRegion = {
+    us: [
+      {
+        city: "New York",
+        country: "United States",
+        image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80",
+        price: "from $879",
+        layover: "8h 45m",
+        rating: 4.8,
+        reviews: 1240,
+      },
+      {
+        city: "Chicago", 
+        country: "United States",
+        image: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?w=600&q=80",
+        price: "from $649",
+        layover: "12h 15m", 
+        rating: 4.9,
+        reviews: 890,
+      },
+      {
+        city: "Dallas",
+        country: "United States", 
+        image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80",
+        price: "from $599",
+        layover: "9h 30m",
+        rating: 4.7,
+        reviews: 650,
+      },
+      {
+        city: "Los Angeles",
+        country: "United States",
+        image: "https://images.unsplash.com/photo-1515756500008-6b1a8fb77c8e?w=600&q=80", 
+        price: "from $729",
+        layover: "6h 20m",
+        rating: 4.6,
+        reviews: 1100,
+      },
+    ],
+    latam: [
+      {
+        city: "São Paulo",
+        country: "Brazil",
+        image: "https://images.unsplash.com/photo-1583222332005-ad8b6b25491c?w=600&q=80",
+        price: "from $524",
+        layover: "10h 30m",
+        rating: 4.5,
+        reviews: 780,
+      },
+      {
+        city: "Mexico City",
+        country: "Mexico",
+        image: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=600&q=80",
+        price: "from $445",
+        layover: "7h 15m",
+        rating: 4.6,
+        reviews: 920,
+      },
+      {
+        city: "Lima",
+        country: "Peru",
+        image: "https://images.unsplash.com/photo-1531065208531-4036c0dba3ca?w=600&q=80",
+        price: "from $389",
+        layover: "8h 20m",
+        rating: 4.4,
+        reviews: 560,
+      },
+      {
+        city: "Buenos Aires",
+        country: "Argentina",
+        image: "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=600&q=80",
+        price: "from $567",
+        layover: "11h 45m",
+        rating: 4.7,
+        reviews: 840,
+      },
+    ],
+    europe: [
+      {
+        city: "London",
+        country: "United Kingdom",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80",
+        price: "from $789",
+        layover: "9h 15m",
+        rating: 4.8,
+        reviews: 1560,
+      },
+      {
+        city: "Paris",
+        country: "France",
+        image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=600&q=80",
+        price: "from $845",
+        layover: "8h 30m",
+        rating: 4.9,
+        reviews: 1890,
+      },
+      {
+        city: "Amsterdam",
+        country: "Netherlands",
+        image: "https://images.unsplash.com/photo-1459679749680-18eb1eb37418?w=600&q=80",
+        price: "from $695",
+        layover: "7h 45m",
+        rating: 4.7,
+        reviews: 1240,
+      },
+      {
+        city: "Frankfurt",
+        country: "Germany",
+        image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80",
+        price: "from $629",
+        layover: "6h 20m",
+        rating: 4.5,
+        reviews: 890,
+      },
+    ],
+    africa: [
+      {
+        city: "Cairo",
+        country: "Egypt",
+        image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73dc4?w=600&q=80",
+        price: "from $434",
+        layover: "12h 30m",
+        rating: 4.3,
+        reviews: 670,
+      },
+      {
+        city: "Cape Town",
+        country: "South Africa",
+        image: "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80",
+        price: "from $789",
+        layover: "10h 15m",
+        rating: 4.8,
+        reviews: 1120,
+      },
+      {
+        city: "Nairobi",
+        country: "Kenya",
+        image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=80",
+        price: "from $512",
+        layover: "9h 45m",
+        rating: 4.4,
+        reviews: 580,
+      },
+      {
+        city: "Marrakech",
+        country: "Morocco",
+        image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73dc4?w=600&q=80",
+        price: "from $398",
+        layover: "8h 10m",
+        rating: 4.6,
+        reviews: 750,
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -284,7 +400,7 @@ export default function TravelOTALandingPage() {
         </div>
       </section>
 
-      {/* Popular Destinations - Travel OTA Style */}
+      {/* Popular Destinations by Region - Travel OTA Style */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -296,51 +412,220 @@ export default function TravelOTALandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {destinations.map((destination, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
-                <div className="relative h-56">
-                  <Image
-                    src={destination.image}
-                    alt={destination.city}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
-                    <span className="text-sm font-bold">{destination.price}</span>
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <h3 className="font-bold text-xl text-white mb-1">{destination.city}</h3>
-                    <p className="text-white/90 text-sm">{destination.country}</p>
-                  </div>
-                </div>
-                
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
-                      <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+          {/* United States */}
+          <div className="mb-12">
+            <div className="flex items-center mb-6">
+              <h3 className="text-xl font-bold text-gray-900 mr-4">🇺🇸 United States</h3>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {destinationsByRegion.us.map((destination, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
+                  <div className="relative h-48">
+                    <Image
+                      src={destination.image}
+                      alt={destination.city}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
+                      <span className="text-sm font-bold">{destination.price}</span>
                     </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Clock className="h-4 w-4 mr-1" />
-                      <span>{destination.layover}</span>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="font-bold text-lg text-white mb-1">{destination.city}</h3>
+                      <p className="text-white/90 text-sm">{destination.country}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-600">
-                      <span>Layover experiences</span>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
+                        <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="h-4 w-4 mr-1" />
+                        <span>{destination.layover}</span>
+                      </div>
                     </div>
-                    <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
-                      Explore
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </button>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-600">
+                        <span>Layover experiences</span>
+                      </div>
+                      <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
+                        Explore
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* South America & LATAM */}
+          <div className="mb-12">
+            <div className="flex items-center mb-6">
+              <h3 className="text-xl font-bold text-gray-900 mr-4">🌎 South America & LATAM</h3>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {destinationsByRegion.latam.map((destination, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
+                  <div className="relative h-48">
+                    <Image
+                      src={destination.image}
+                      alt={destination.city}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
+                      <span className="text-sm font-bold">{destination.price}</span>
+                    </div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="font-bold text-lg text-white mb-1">{destination.city}</h3>
+                      <p className="text-white/90 text-sm">{destination.country}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
+                        <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="h-4 w-4 mr-1" />
+                        <span>{destination.layover}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-600">
+                        <span>Layover experiences</span>
+                      </div>
+                      <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
+                        Explore
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Europe */}
+          <div className="mb-12">
+            <div className="flex items-center mb-6">
+              <h3 className="text-xl font-bold text-gray-900 mr-4">🇪🇺 Europe</h3>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {destinationsByRegion.europe.map((destination, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
+                  <div className="relative h-48">
+                    <Image
+                      src={destination.image}
+                      alt={destination.city}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
+                      <span className="text-sm font-bold">{destination.price}</span>
+                    </div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="font-bold text-lg text-white mb-1">{destination.city}</h3>
+                      <p className="text-white/90 text-sm">{destination.country}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
+                        <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="h-4 w-4 mr-1" />
+                        <span>{destination.layover}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-600">
+                        <span>Layover experiences</span>
+                      </div>
+                      <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
+                        Explore
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Africa */}
+          <div className="mb-8">
+            <div className="flex items-center mb-6">
+              <h3 className="text-xl font-bold text-gray-900 mr-4">🌍 Africa</h3>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {destinationsByRegion.africa.map((destination, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 hover:border-blue-200">
+                  <div className="relative h-48">
+                    <Image
+                      src={destination.image}
+                      alt={destination.city}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full shadow-lg">
+                      <span className="text-sm font-bold">{destination.price}</span>
+                    </div>
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <h3 className="font-bold text-lg text-white mb-1">{destination.city}</h3>
+                      <p className="text-white/90 text-sm">{destination.country}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-semibold text-gray-700 ml-1">{destination.rating}</span>
+                        <span className="text-xs text-gray-500 ml-1">({destination.reviews})</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="h-4 w-4 mr-1" />
+                        <span>{destination.layover}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm text-gray-600">
+                        <span>Layover experiences</span>
+                      </div>
+                      <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center">
+                        Explore
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -473,83 +758,30 @@ export default function TravelOTALandingPage() {
         </div>
       </section>
 
-      {/* Customer Testimonials - Travel OTA Style */}
+      {/* Customer Testimonial - Single Featured */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Travelers Say</h2>
-            <p className="text-lg text-gray-600">Real stories from real adventures</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+              <div className="flex justify-center mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-700 mb-4 italic">
-                "LayoverHQ turned my 9-hour Chicago layover into the best part of my trip! The deep dish tour was incredible and I made it back with time to spare."
+              <p className="text-gray-700 mb-6 italic text-xl leading-relaxed">
+                "LayoverHQ turned my 9-hour Chicago layover into the best part of my trip! The deep dish tour was incredible and I made it back with time to spare. Saved $400 and got to explore an amazing city!"
               </p>
-              <div className="flex items-center">
+              <div className="flex items-center justify-center">
                 <Image
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
                   alt="Sarah Chen"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-3"
+                  width={64}
+                  height={64}
+                  className="rounded-full mr-4"
                 />
-                <div>
-                  <div className="font-semibold text-gray-900">Sarah Chen</div>
-                  <div className="text-sm text-gray-500">Business Traveler</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Saved $400 on my flight to London AND got to see the Statue of Liberty during my NYC layover. This is genius!"
-              </p>
-              <div className="flex items-center">
-                <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
-                  alt="Mike Rodriguez"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-3"
-                />
-                <div>
-                  <div className="font-semibold text-gray-900">Mike Rodriguez</div>
-                  <div className="text-sm text-gray-500">Digital Nomad</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Perfect timing, amazing experiences, and incredible value. LayoverHQ makes travel so much more exciting!"
-              </p>
-              <div className="flex items-center">
-                <Image
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
-                  alt="Emma Thompson"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-3"
-                />
-                <div>
-                  <div className="font-semibold text-gray-900">Emma Thompson</div>
-                  <div className="text-sm text-gray-500">Frequent Flyer</div>
+                <div className="text-left">
+                  <div className="font-semibold text-gray-900 text-lg">Sarah Chen</div>
+                  <div className="text-gray-500">Business Traveler • Chicago Layover</div>
                 </div>
               </div>
             </div>
@@ -587,49 +819,6 @@ export default function TravelOTALandingPage() {
         </div>
       </section>
 
-      {/* Why Choose Us - Enhanced */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Book with LayoverHQ?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Join 500,000+ travelers who've discovered the smart way to fly</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center group hover:bg-blue-50 p-6 rounded-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
-                <Shield className="h-8 w-8 text-blue-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">100% Protected</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">Comprehensive travel insurance, 24/7 support, and guaranteed connection protection</p>
-            </div>
-
-            <div className="text-center group hover:bg-green-50 p-6 rounded-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Perfect Timing</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">AI-optimized schedules ensure you never miss your connection while maximizing adventure time</p>
-            </div>
-
-            <div className="text-center group hover:bg-orange-50 p-6 rounded-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
-                <Award className="h-8 w-8 text-orange-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Expert Curated</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">Hand-picked experiences by local travel experts and verified by thousands of reviews</p>
-            </div>
-
-            <div className="text-center group hover:bg-purple-50 p-6 rounded-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                <TrendingUp className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Best Value</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">Save up to 70% vs booking separately, with price match guarantee and exclusive deals</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer - Travel OTA Style */}
       <footer className="bg-gray-900 text-white">
