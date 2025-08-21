@@ -52,7 +52,7 @@ export class MultiCityCoordinator {
 
   async planMultiCityTrip(request: MultiCityRequest): Promise<MultiCityItinerary[]> {
     // Generate optimal city sequences
-    const citySequences = this.generateCitySequences(request.cities)
+    const citySequences = await this.generateCitySequences(request.cities)
     
     // Find flights for each sequence
     const itineraryOptions: MultiCityItinerary[] = []
@@ -72,7 +72,7 @@ export class MultiCityCoordinator {
     return itineraryOptions.sort((a, b) => b.score - a.score).slice(0, 5)
   }
 
-  private generateCitySequences(cities: string[]): string[][] {
+  private async generateCitySequences(cities: string[]): Promise<string[][]> {
     if (cities.length <= 2) {
       return [cities]
     }
