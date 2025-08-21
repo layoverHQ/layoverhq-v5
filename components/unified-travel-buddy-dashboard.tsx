@@ -1,21 +1,37 @@
-'use client'
+"use client"
 
-import React, { useState, useEffect, useCallback } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Plane, MapPin, Clock, Users, FileText, Shield, Search, 
-  TrendingUp, Heart, Star, AlertCircle, Zap, RefreshCw,
-  Globe, Navigation, Phone, Wallet, Calendar, Camera
-} from 'lucide-react'
+import React, { useState, useEffect, useCallback } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Plane,
+  MapPin,
+  Clock,
+  Users,
+  FileText,
+  Shield,
+  Search,
+  TrendingUp,
+  Heart,
+  Star,
+  AlertCircle,
+  Zap,
+  RefreshCw,
+  Globe,
+  Navigation,
+  Phone,
+  Wallet,
+  Calendar,
+  Camera,
+} from "lucide-react"
 
 // Import specialized components
-import { ResponsiveTravelDashboard } from './responsive-travel-dashboard'
-import { MobileTravelWidgets } from './mobile-travel-widgets'
-import { AISearchInterface } from './ai-search-interface'
-import PersonalizedTravelDashboard from './personalized-travel-dashboard'
+import { ResponsiveTravelDashboard } from "./responsive-travel-dashboard"
+import { MobileTravelWidgets } from "./mobile-travel-widgets"
+import { AISearchInterface } from "./ai-search-interface"
+import PersonalizedTravelDashboard from "./personalized-travel-dashboard"
 
 // Types for unified data
 interface UnifiedTravelData {
@@ -84,50 +100,49 @@ export function UnifiedTravelBuddyDashboard({
   userId,
   initialData,
   currentLocation,
-  layover
+  layover,
 }: UnifiedTravelBuddyDashboardProps) {
   const [data, setData] = useState<UnifiedTravelData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState("overview")
   const [refreshing, setRefreshing] = useState(false)
 
   // Fetch unified travel data
   const fetchTravelData = useCallback(async () => {
     try {
       setRefreshing(true)
-      
+
       const requestBody = {
         currentLocation,
         layover,
         preferences: {
-          interests: ['culture', 'food', 'adventure'],
+          interests: ["culture", "food", "adventure"],
           budget: { min: 0, max: 300 },
-          activityLevel: 'moderate',
-          travelStyle: 'solo'
-        }
+          activityLevel: "moderate",
+          travelStyle: "solo",
+        },
       }
 
-      const response = await fetch('/api/v1/travel-buddy/dashboard', {
-        method: 'POST',
+      const response = await fetch("/api/v1/travel-buddy/dashboard", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'x-user-id': userId
+          "Content-Type": "application/json",
+          "x-user-id": userId,
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       })
 
       if (!response.ok) {
-        throw new Error('Failed to fetch travel data')
+        throw new Error("Failed to fetch travel data")
       }
 
       const result = await response.json()
       setData(result.data)
       setError(null)
-
     } catch (err) {
-      console.error('Error fetching travel data:', err)
-      setError(err instanceof Error ? err.message : 'Unknown error')
+      console.error("Error fetching travel data:", err)
+      setError(err instanceof Error ? err.message : "Unknown error")
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -177,9 +192,10 @@ export function UnifiedTravelBuddyDashboard({
 
   // Calculate summary stats
   const totalAlerts = data.liveUpdates.alerts.length + data.emergency.safetyAlerts.length
-  const totalRecommendations = data.recommendations.experiences.length + 
-                              data.recommendations.restaurants.length + 
-                              data.recommendations.activities.length
+  const totalRecommendations =
+    data.recommendations.experiences.length +
+    data.recommendations.restaurants.length +
+    data.recommendations.activities.length
   const urgentItems = data.documents.expiringSoon.length
 
   return (
@@ -193,14 +209,14 @@ export function UnifiedTravelBuddyDashboard({
                 <Zap className="h-6 w-6 text-blue-500" />
                 <h1 className="text-xl font-bold">Travel Buddy</h1>
               </div>
-              
+
               {currentLocation && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <MapPin className="h-4 w-4" />
                   <span>{currentLocation.city}</span>
                 </div>
               )}
-              
+
               {layover && (
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Clock className="h-4 w-4" />
@@ -217,7 +233,7 @@ export function UnifiedTravelBuddyDashboard({
                   {totalAlerts} alerts
                 </Badge>
               )}
-              
+
               {urgentItems > 0 && (
                 <Badge variant="outline" className="text-orange-600 border-orange-600">
                   {urgentItems} expiring
@@ -231,7 +247,7 @@ export function UnifiedTravelBuddyDashboard({
                 disabled={refreshing}
                 className="flex items-center gap-2"
               >
-                <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
                 Refresh
               </Button>
             </div>
@@ -328,12 +344,31 @@ export function UnifiedTravelBuddyDashboard({
 
             {/* Integrated overview components */}
             {layover && currentLocation && (
-              <ResponsiveTravelDashboard 
+              <ResponsiveTravelDashboard
                 travelData={{
-                  layover,
+                  layover: {
+                    duration: layover.duration,
+                    timeRemaining: layover.timeRemaining,
+                    currentLocation: currentLocation.city,
+                    nextFlight: {
+                      flightNumber: layover.flightInfo?.flightNumber || "TBD",
+                      departure: {
+                        city: currentLocation.city,
+                        time: layover.flightInfo?.departureTime || "TBD",
+                        gate: layover.flightInfo?.gate
+                      },
+                      arrival: {
+                        city: layover.flightInfo?.destination || "TBD",
+                        time: layover.flightInfo?.arrivalTime || "TBD",
+                        gate: layover.flightInfo?.arrivalGate
+                      },
+                      status: layover.flightInfo?.status || "on-time",
+                      delay: layover.flightInfo?.delay
+                    }
+                  },
                   alerts: data.liveUpdates.alerts,
                   city: currentLocation.city,
-                  user: { name: 'User', preferences: {}, travelHistory: [] }
+                  user: { name: "User", preferences: {}, travelHistory: [] },
                 }}
               />
             )}
@@ -356,9 +391,11 @@ export function UnifiedTravelBuddyDashboard({
                       {data.liveUpdates.flights.map((flight, index) => (
                         <div key={index} className="p-3 border rounded-lg">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium">{flight.number || 'Flight'}</span>
-                            <Badge variant={flight.status === 'on-time' ? 'default' : 'destructive'}>
-                              {flight.status || 'Unknown'}
+                            <span className="font-medium">{flight.number || "Flight"}</span>
+                            <Badge
+                              variant={flight.status === "on-time" ? "default" : "destructive"}
+                            >
+                              {flight.status || "Unknown"}
                             </Badge>
                           </div>
                         </div>
@@ -389,7 +426,7 @@ export function UnifiedTravelBuddyDashboard({
                         <div className="flex justify-between">
                           <span>Weather</span>
                           <span className="font-medium">
-                            {data.liveUpdates.weather.temperature || 'Unknown'}
+                            {data.liveUpdates.weather.temperature || "Unknown"}
                           </span>
                         </div>
                       )}
@@ -413,7 +450,10 @@ export function UnifiedTravelBuddyDashboard({
                 <CardContent>
                   <div className="space-y-3">
                     {data.liveUpdates.alerts.map((alert, index) => (
-                      <div key={index} className="p-3 border rounded-lg border-orange-200 bg-orange-50">
+                      <div
+                        key={index}
+                        className="p-3 border rounded-lg border-orange-200 bg-orange-50"
+                      >
                         <h4 className="font-medium text-orange-800">{alert.title}</h4>
                         <p className="text-sm text-orange-700">{alert.message}</p>
                       </div>
@@ -431,7 +471,7 @@ export function UnifiedTravelBuddyDashboard({
                 initialLocation={currentLocation.city}
                 layoverDuration={layover?.duration || 6}
                 onResultSelect={(result) => {
-                  console.log('Selected experience:', result)
+                  console.log("Selected experience:", result)
                 }}
               />
             )}
@@ -448,12 +488,17 @@ export function UnifiedTravelBuddyDashboard({
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {data.recommendations.experiences.slice(0, 6).map((exp, index) => (
-                      <div key={index} className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                        <h4 className="font-medium mb-2">{exp.title || 'Experience'}</h4>
-                        <p className="text-sm text-gray-600 mb-3">{exp.description || 'No description'}</p>
+                      <div
+                        key={index}
+                        className="p-4 border rounded-lg hover:shadow-md transition-shadow"
+                      >
+                        <h4 className="font-medium mb-2">{exp.title || "Experience"}</h4>
+                        <p className="text-sm text-gray-600 mb-3">
+                          {exp.description || "No description"}
+                        </p>
                         <div className="flex justify-between items-center">
                           <span className="text-sm font-medium text-green-600">
-                            ${exp.price || 'Free'}
+                            ${exp.price || "Free"}
                           </span>
                           <Button size="sm">Book Now</Button>
                         </div>
@@ -481,14 +526,18 @@ export function UnifiedTravelBuddyDashboard({
                     <div className="space-y-4">
                       {data.social.feed.slice(0, 5).map((post, index) => (
                         <div key={index} className="p-3 border rounded-lg">
-                          <p className="text-sm">{post.content || 'Social post content'}</p>
+                          <p className="text-sm">{post.content || "Social post content"}</p>
                           <div className="flex justify-between items-center mt-2">
                             <span className="text-xs text-gray-500">
-                              {post.createdAt || 'Recently'}
+                              {post.createdAt || "Recently"}
                             </span>
                             <div className="flex gap-2">
-                              <Button variant="ghost" size="sm">Like</Button>
-                              <Button variant="ghost" size="sm">Comment</Button>
+                              <Button variant="ghost" size="sm">
+                                Like
+                              </Button>
+                              <Button variant="ghost" size="sm">
+                                Comment
+                              </Button>
                             </div>
                           </div>
                         </div>
@@ -514,10 +563,8 @@ export function UnifiedTravelBuddyDashboard({
                       {data.social.travelGroups.map((group, index) => (
                         <div key={index} className="p-3 border rounded-lg">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium">{group.name || 'Travel Group'}</span>
-                            <Badge variant="outline">
-                              {group.memberCount || 0} members
-                            </Badge>
+                            <span className="font-medium">{group.name || "Travel Group"}</span>
+                            <Badge variant="outline">{group.memberCount || 0} members</Badge>
                           </div>
                         </div>
                       ))}
@@ -551,8 +598,8 @@ export function UnifiedTravelBuddyDashboard({
                               <span className="font-medium">{doc.title}</span>
                               <p className="text-sm text-gray-600">{doc.type}</p>
                             </div>
-                            <Badge variant={doc.isVerified ? 'default' : 'outline'}>
-                              {doc.isVerified ? 'Verified' : 'Pending'}
+                            <Badge variant={doc.isVerified ? "default" : "outline"}>
+                              {doc.isVerified ? "Verified" : "Pending"}
                             </Badge>
                           </div>
                         </div>
@@ -576,11 +623,17 @@ export function UnifiedTravelBuddyDashboard({
                   <CardContent>
                     <div className="space-y-3">
                       {data.documents.expiringSoon.map((doc, index) => (
-                        <div key={index} className="p-3 border rounded-lg border-orange-200 bg-orange-50">
+                        <div
+                          key={index}
+                          className="p-3 border rounded-lg border-orange-200 bg-orange-50"
+                        >
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-orange-800">{doc.title}</span>
                             <span className="text-sm text-orange-600">
-                              Expires: {doc.expiryDate ? new Date(doc.expiryDate).toLocaleDateString() : 'Unknown'}
+                              Expires:{" "}
+                              {doc.expiryDate
+                                ? new Date(doc.expiryDate).toLocaleDateString()
+                                : "Unknown"}
                             </span>
                           </div>
                         </div>
@@ -645,7 +698,9 @@ export function UnifiedTravelBuddyDashboard({
                     <div className="text-center py-8">
                       <Phone className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                       <p className="text-gray-500">No emergency contacts</p>
-                      <Button className="mt-4" size="sm">Add Contact</Button>
+                      <Button className="mt-4" size="sm">
+                        Add Contact
+                      </Button>
                     </div>
                   )}
                 </CardContent>
@@ -672,7 +727,9 @@ export function UnifiedTravelBuddyDashboard({
                     <div className="text-center py-8">
                       <Shield className="h-12 w-12 text-green-400 mx-auto mb-4" />
                       <p className="text-green-600 font-medium">All Clear</p>
-                      <p className="text-sm text-gray-500 mt-2">No safety alerts for your location</p>
+                      <p className="text-sm text-gray-500 mt-2">
+                        No safety alerts for your location
+                      </p>
                     </div>
                   )}
                 </CardContent>
