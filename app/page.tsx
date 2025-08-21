@@ -70,7 +70,7 @@ export default function TravelOTALandingPage() {
       {
         city: "Los Angeles",
         country: "United States",
-        image: "https://images.unsplash.com/photo-1515756500008-6b1a8fb77c8e?w=600&q=80", 
+        image: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=600&q=80", 
         price: "from $729",
         layover: "6h 20m",
         rating: 4.6,
